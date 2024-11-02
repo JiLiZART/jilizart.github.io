@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero';
+import Experience from '../components/Experience.astro';
+import Contact from '../components/Contact.astro';
+import ThemeToggle from '../components/ThemeToggle';
+---
+
+<Layout title="Nikolay Kost - JS Developer">
+  <ThemeToggle client:load />
+  <main class="max-w-3xl mx-auto px-6 py-20">
+    <Hero client:load />
+    <Experience />
+    <Contact />
+  </main>
+</Layout>

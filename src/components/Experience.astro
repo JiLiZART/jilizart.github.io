@@ -1,0 +1,72 @@
+---
+const experiences = [
+  {
+    emoji: "🎸",
+    company: "Muse Group",
+    products: [
+      {
+        name: "Musescore",
+        link: "https://musescore.com"
+      },
+      {
+        name: "Ultimate Guitar",
+        link: "https://ultimate-guitar.com"
+      }
+    ],
+    description: "Contributed to music notation and guitar tablature platforms"
+  },
+  {
+    emoji: "👷",
+    company: "Skyeng",
+    link: "https://skyeng.ru",
+    description: "Developed educational technology solutions"
+  },
+  {
+    emoji: "👨‍🏫",
+    company: "Medialooks",
+    link: "https://medialooks.net",
+    description: "Designed Single Page Applications"
+  },
+  {
+    emoji: "👨‍💻",
+    project: "Fast BBCode Parser",
+    link: "https://github.com/jilizart/bbob",
+    description: "Creator of high-performance BBCode parsing library"
+  }
+];
+---
+<section class="mb-20">
+  <h2 class="text-2xl font-bold mb-8 dark:text-white">Experience</h2>
+  <div class="space-y-8">
+    {experiences.map(exp => (
+      <div class="flex items-start space-x-4 p-4 rounded-lg hover:bg-white/50 dark:hover:bg-gray-800/50 transition-colors">
+        <span class="text-2xl">{exp.emoji}</span>
+        <div>
+          <h3 class="text-lg font-semibold dark:text-white">
+            {exp.company && (
+              <span>{exp.company}</span>
+            )}
+            {exp.project && (
+              <a href={exp.link} class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                {exp.project}
+              </a>
+            )}
+          </h3>
+          {exp.products && (
+            <div class="text-gray-600 dark:text-gray-400 mb-1">
+              {exp.products.map((product, index) => (
+                <>
+                  <a href={product.link} class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                    {product.name}
+                  </a>
+                  {index < exp.products.length - 1 && " • "}
+                </>
+              ))}
+            </div>
+          )}
+          <p class="text-gray-600 dark:text-gray-400">{exp.description}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
