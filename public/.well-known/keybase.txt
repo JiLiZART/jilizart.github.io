@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/jilizart
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://artkost.ru
+  * I am jilizart (https://keybase.io/jilizart) on keybase.
+  * I have a public key ASAtHFIgtTnaFJKtPopYNyOuO7AYKR5XCK19lEkvIJDD5Qo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "01202d1c5220b539da1492ad3e8a583723ae3bb018291e5708ad7d94492f2090c3e50a",
+      "host": "keybase.io",
+      "kid": "01202d1c5220b539da1492ad3e8a583723ae3bb018291e5708ad7d94492f2090c3e50a",
+      "uid": "4f5bd8b9cc8e9d7f237c354f670bc419",
+      "username": "jilizart"
+    },
+    "merkle_root": {
+      "ctime": 1636456031,
+      "hash": "7d9849a8b7e6db91d8eaccdfc3775c0d951b0b49dded584a2b57396a0263a1cd660dde996c40330342141cb8ef56c4d22f0675526490b05459873ba74d321edd",
+      "hash_meta": "50846381ab3ba8de845b036cfbec50ee189535b83f75f9942a56ee1b38d8bedb",
+      "seqno": 21177037
+    },
+    "service": {
+      "entropy": "lQeKCy7pvXHn9Dgu1UFHxf8+",
+      "hostname": "artkost.ru",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "5.8.0"
+  },
+  "ctime": 1636456116,
+  "expire_in": 504576000,
+  "prev": "75155ed2569cd6c6800c88296ee15d7a13529e4f1bc5b87f90b90d642a807d78",
+  "seqno": 6,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgLRxSILU52hSSrT6KWDcjrjuwGCkeVwitfZRJLyCQw+UKp3BheWxvYWTESpcCBsQgdRVe0lac1saADIgpbuFdehNSnk8bxbh/kLkNZCqAfXjEILCe8NIBoCOkj6n6sqPmJD+rrAK3OWLBMjz9VxBxdvu3AgHCo3NpZ8RApzKNA3z/jmCqNxk3d0asx+ZebzXLaInM/MG2xxPAQ415+CTXr2idJJvpazB6gPMnt8TrHtwBok8puq2K71YCBqhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIIqQGJfosZcRxy2rGGLv1hPhj/XbQDeCUNkKUp9PzUYlo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/jilizart
+
+==================================================================

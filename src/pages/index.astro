@@ -1,16 +1,22 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero';
+import Hero from '../components/Hero.astro';
 import Experience from '../components/Experience.astro';
 import Contact from '../components/Contact.astro';
+import Tech from '../components/Tech.astro';
+import Crafts from '../components/Crafts.astro';
 import ThemeToggle from '../components/ThemeToggle';
 ---
 
 <Layout title="Nikolay Kost - JS Developer">
   <ThemeToggle client:load />
-  <main class="max-w-3xl mx-auto px-6 py-20">
-    <Hero client:load />
-    <Experience />
-    <Contact />
+  <main class="max-w-6xl mx-auto px-6 py-20 flex flex-col gap-6">
+    <Hero />
+    <section class="flex flex-row flex-wrap gap-6">
+        <Tech />
+        <Crafts />
+        <Experience />
+        <Contact />
+    </section>
   </main>
 </Layout>

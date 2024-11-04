@@ -12,8 +12,15 @@ const { title } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="description" content="Nikolay Kost - JavaScript Developer specializing in web applications and efficient JavaScript solutions" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Nikolay Kost - JavaScript Developer">
+    <meta name="twitter:site" content="@jilizart">
+    <meta name="twitter:image" content="android-chrome-192x192.png">
+    <meta name="twitter:image:alt" content="Nikolay Kost - JavaScript Developer">
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,7 +35,40 @@ const { title } = Astro.props;
       if (theme === 'dark') document.documentElement.classList.add('dark');
     </script>
   </head>
-  <body class="bg-gradient-to-br from-amber-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 min-h-screen font-['Inter'] transition-colors">
+  <body class="bg-gradient-to-br from-amber-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 min-h-screen font-sans font-['Inter'] transition-colors">
     <slot />
   </body>
+
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cc1c531698974a028fa31d4216f2a9c7"}'></script>
+<!-- End Cloudflare Web Analytics -->
+
+<!-- Google Tag Manager -->
+<script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WCBMSF');</script>
+<!-- End Google Tag Manager -->
+
+<script type="application/ld+json">
+{
+    "@context": "https://json-ld.org/contexts/person.jsonld",
+    "name": "Nikolay Kosturin",
+    "nickname": "jilizart",
+    "born": "1989-12-29",
+    "email": "mailto:nikolay@artkost.ru",
+    "url": "https://artkost.ru",
+    "jobTitle": "JavaScript Developer",
+    "image": "https://artkost.ru/profile.jpeg",
+    "homepage": "https://artkost.ru",
+    "sameAs": [
+        "https://github.com/jilizart",
+        "https://x.com/jilizart",
+        "https://linkedin.com/in/nkostyurin",
+        "https://t.me/jilizart",
+        "https://twitter.com/jilizart"
+    ]
+}
+</script>
 </html>

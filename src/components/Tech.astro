@@ -1,0 +1,92 @@
+---
+import { SiSvelte, SiNuxtdotjs, SiSass, SiStyledcomponents, SiExpress, SiNginx, SiLinux, SiTypescript, SiTailwindcss, SiBun, SiVercel, SiVuedotjs, SiGitlab, SiGithub, SiPnpm, SiNpm, SiYarn, SiWebpack, SiGit, SiVite, SiJest, SiFastify, SiDocker, SiNextdotjs, SiNodedotjs, SiReact, SiRedux, SiJavascript } from "react-icons/si";
+
+const tech = [
+    { name: "JavaScript", icon: SiJavascript, weight: 5, bg: 'bg-amber-200' },
+    { name: "TypeScript", icon: SiTypescript, weight: 1, bg: 'bg-blue-200' },
+
+    { name: "Next", icon: SiNextdotjs, weight: 5, bg: 'bg-stone-200' },
+    { name: "React", icon: SiReact, weight: 8, bg: 'bg-blue-200' },
+    { name: "Redux", icon: SiRedux, weight: 7, bg: 'bg-blue-200' },
+    { name: "Jest", icon: SiJest, weight: 6, bg: 'bg-purple-200' },
+    { name: "Vue", icon: SiVuedotjs, weight: 1, bg: 'bg-green-100' },
+    { name: "Nuxt", icon: SiNuxtdotjs, weight: 1, bg: 'bg-green-100' },
+    { name: "Svelte", icon: SiSvelte, weight: 1, bg: 'bg-red-100' },
+    { name: "SvelteKit", icon: SiSvelte, weight: 1, bg: 'bg-red-100' },
+
+    { name: "TailwindCSS", icon: SiTailwindcss, weight: 1, bg: 'bg-blue-200' },
+    { name: "Styled", icon: SiStyledcomponents, weight: 1, bg: 'bg-fuchsia-200' },
+    { name: "Sass", icon: SiSass, weight: 1, bg: 'bg-pink-200' },
+    { name: "Node", icon: SiNodedotjs, weight: 6, bg: 'bg-green-100' },
+    { name: "Bun", icon: SiBun, weight: 1, bg: 'bg-yellow-200' },
+    { name: "Express", icon: SiExpress, weight: 1, bg: 'bg-blue-200' },
+    { name: "Fastify", icon: SiFastify, weight: 5, bg: 'bg-stone-200' },
+    { name: "PNPM", icon: SiPnpm, weight: 6, bg: 'bg-orange-200' },
+    { name: "NPM", icon: SiNpm, weight: 6, bg: 'bg-red-200' },
+    { name: "Yarn", icon: SiYarn, weight: 6, bg: 'bg-sky-200' },
+    { name: "Webpack", icon: SiWebpack, weight: 2, bg: 'bg-blue-200' },
+    { name: "Vite", icon: SiVite, weight: 5, bg: 'bg-purple-200' },
+    { name: "Git", icon: SiGit, weight: 6, bg: 'bg-red-200' },
+    { name: "Docker", icon: SiDocker, weight: 3, bg: 'bg-sky-200' },
+    { name: "Gitlab CI", icon: SiGitlab, weight: 3, bg: 'bg-orange-200' },
+    { name: "Github Actions", icon: SiGithub, weight: 3, bg: 'bg-gray-200' },
+    { name: "Nginx", icon: SiNginx, weight: 6, bg: 'bg-green-200' },
+    { name: "Vercel", icon: SiVercel, weight: 1, bg: 'bg-gray-200' },
+    { name: "GNU/Linux", icon: SiLinux, weight: 1, bg: 'bg-stone-200' },
+]
+
+---
+
+<article class="w-2/4 p-6 flex flex-col gap-6 rounded-2xl overflow-hidden bg-gradient-to-br from-purple-50 to-sky-100 dark:from-gray-700 dark:to-gray-600">
+    <h2 class="text-2xl font-bold dark:text-white">I am working with 🛠</h2>
+    <ul class="cloud gap-4 max-w-xl" role="navigation" aria-label="Webdev tech stack">
+        {tech.map(({ name, icon: Icon, weight, bg }) => (
+          <li class={`flex flex-row items-center gap-2 px-2 py-1 rounded-lg text-lg text-gray-600 dark:text-gray-400 ${bg} dark:bg-gray-800/50 transition-colors`} data-weight={weight}>
+              <Icon className="w-6 h-6" />
+              {name}
+          </li>
+        ))}
+    </ul>
+  </article>
+
+<style>
+.cloud {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  line-height: 2.75rem;
+  width: 100%;
+}
+
+.cloud span {
+  /*
+  Not supported by any browser at the moment :(
+  --size: attr(data-weight number);
+  */
+  --size: 4;
+  /* --color: #a33; */
+  /* color: var(--color); */
+  /* font-size: calc(var(--size) * 0.25rem + 0.5rem); */
+  display: block;
+  /* padding: 0.125rem 0.25rem; */
+  position: relative;
+  text-decoration: none;
+  /*
+  For different tones of a single color
+  opacity: calc((15 - (9 - var(--size))) / 15);
+  */
+}
+
+/* .cloud span[data-weight="1"] { --size: 1; }
+.cloud span[data-weight="2"] { --size: 2; }
+.cloud span[data-weight="3"] { --size: 3; }
+.cloud span[data-weight="4"] { --size: 4; }
+.cloud span[data-weight="5"] { --size: 6; }
+.cloud span[data-weight="6"] { --size: 8; }
+.cloud span[data-weight="7"] { --size: 10; }
+.cloud span[data-weight="8"] { --size: 13; }
+.cloud span[data-weight="9"] { --size: 16; } */
+</style>
