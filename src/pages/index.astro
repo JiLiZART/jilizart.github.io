@@ -5,16 +5,14 @@ import Experience from '../components/Experience.astro';
 import Contact from '../components/Contact.astro';
 import Tech from '../components/Tech.astro';
 import Crafts from '../components/Crafts.astro';
-import ThemeToggle from '../components/ThemeToggle';
 ---
 
 <Layout title="Nikolay Kost - JS Developer">
-  <ThemeToggle client:load />
   <main class="max-w-6xl mx-auto px-6 py-20 flex flex-col gap-6">
     <Hero />
-    <section class="flex flex-row flex-wrap gap-6">
+    <section class="flex flex-row sm:flex-col flex-wrap gap-6">
         <Tech />
-        <section class="grid grid-cols-2 gap-6">
+        <section class="grid md:grid-cols-2 gap-6">
             <Crafts />
             <Experience />
         </section>

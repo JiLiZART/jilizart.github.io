@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { FiCopy } from 'react-icons/fi';
+import { SiBitcoin, SiEthereum, SiTether } from 'react-icons/si';
+
+const cryptoAddresses = [
+  {
+    name: 'Bitcoin (BTC)',
+    address: 'bc1q3llaxsrmpzhysl6nxy3ke346rlx3xqnqjg8xfe',
+    icon: SiBitcoin,
+    color: 'text-[#F7931A]'
+  },
+  {
+    name: 'Ethereum (ETH)',
+    address: '0x810Da3855eD0273af493e5f7e96B06AeDd52adAC',
+    icon: SiEthereum,
+    color: 'text-[#627EEA]'
+  },
+  {
+    name: 'USDT (TRC-20)',
+    address: 'TT94uVjJho8n47xbdfNYz6vdebgmKFpxAT',
+    icon: SiTether,
+    color: 'text-[#26A17B]'
+  }
+];
+
+const copyToClipboard = `
+  function copyAddress(address) {
+    navigator.clipboard.writeText(address);
+    const button = document.querySelector(\`[data-address="\${address}"]\`);
+    button.textContent = 'Copied!';
+    setTimeout(() => {
+      button.textContent = 'Copy';
+    }, 2000);
+  }
+`;
+---
+
+<Layout title="Donate - Nikolay Kost">
+  <main class="max-w-3xl mx-auto px-6 py-20">
+    <h1 class="text-4xl font-bold mb-8 dark:text-white">Support My Work 🙏</h1>
+
+    <p class="text-lg text-gray-600 dark:text-gray-400 mb-12">
+      If you find my work valuable and would like to support my open-source contributions, you can donate using cryptocurrency. Your support helps me dedicate more time to creating useful content and tools.
+    </p>
+
+    <div class="space-y-6">
+      {cryptoAddresses.map(({ name, address, icon: Icon, color }) => (
+        <div class="bg-white/50 dark:bg-gray-800/50 rounded-lg p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon className={`w-6 h-6 ${color}`} />
+            <h2 class="text-xl font-semibold dark:text-white">{name}</h2>
+          </div>
+          <div class="flex items-center gap-4">
+            <code class="flex-1 p-3 bg-gray-100 dark:bg-gray-900 rounded text-sm font-mono break-all dark:text-white">
+              {address}
+            </code>
+            <button
+              onclick={`copyAddress('${address}')`}
+              data-address={address}
+              class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
+            >
+              <FiCopy className="w-4 h-4" />
+              Copy
+            </button>
+          </div>
+        </div>
+      ))}
+    </div>
+  </main>
+</Layout>
+
+<script set:html={copyToClipboard}></script>

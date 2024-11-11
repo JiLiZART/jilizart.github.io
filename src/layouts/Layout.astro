@@ -1,9 +1,13 @@
 ---
+import ThemeToggle from '../components/ThemeToggle.astro'
+
 interface Props {
   title: string;
 }
 
 const { title } = Astro.props;
+
+const currentYear = new Date().getFullYear();
 ---
 
 <!doctype html>
@@ -37,6 +41,32 @@ const { title } = Astro.props;
   </head>
   <body class="bg-gradient-to-br from-amber-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 min-h-screen font-sans font-['Inter'] transition-colors">
     <slot />
+    <ThemeToggle />
+
+    <footer class="max-w-3xl mx-auto px-6 py-8 text-center text-sm text-gray-600 dark:text-gray-400">
+      <div class="flex items-center justify-center space-x-2 mb-2">
+        <span>Built with</span>
+        <a
+          href="https://astro.build"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+        >
+          <img loading="lazy" src="https://astro.build/favicon.svg" alt="Astro logo" class="w-4 h-4 mr-1" />
+          Astro
+        </a>
+      </div>
+      <div class="space-x-3">
+        <span>© {currentYear} <a class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors" href="/">Nikolay Kost</a></span>
+        <span>•</span>
+        <a
+          href="/donate"
+          class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+        >
+          Support my work
+        </a>
+      </div>
+    </footer>
   </body>
 
 <!-- Cloudflare Web Analytics -->
@@ -57,11 +87,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     "name": "Nikolay Kosturin",
     "nickname": "jilizart",
     "born": "1989-12-29",
-    "email": "mailto:nikolay@artkost.ru",
-    "url": "https://artkost.ru",
+    "email": "mailto:nk@artkost.dev",
+    "url": "https://artkost.dev",
     "jobTitle": "JavaScript Developer",
-    "image": "https://artkost.ru/profile.jpeg",
-    "homepage": "https://artkost.ru",
+    "image": "https://artkost.dev/profile.jpeg",
+    "homepage": "https://artkost.dev",
     "sameAs": [
         "https://github.com/jilizart",
         "https://x.com/jilizart",

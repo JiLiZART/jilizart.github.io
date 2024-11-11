@@ -1,6 +1,18 @@
 ---
 const experiences = [
   {
+    emoji: "🫰",
+    company: "HodlHodl",
+    link: "https://hodlhodl.com/",
+    description: "Reimagined frontend infrastructure on top of Next.js"
+  },
+  {
+    emoji: "📦",
+    company: "Cube",
+    link: "https://cube.dev",
+    description: "Developed UI Kit for SaaS service"
+  },
+  {
     emoji: "🎸",
     company: "Muse Group",
     products: [
@@ -24,39 +36,30 @@ const experiences = [
   {
     emoji: "👨‍🏫",
     company: "Medialooks",
-    link: "https://medialooks.net",
+    link: "https://medialooks.com",
     description: "Designed Single Page Applications"
-  },
-  {
-    emoji: "👨‍💻",
-    project: "Fast BBCode Parser",
-    link: "https://github.com/jilizart/bbob",
-    description: "Creator of high-performance BBCode parsing library"
   }
 ];
 ---
 <article class="w-full py-6 flex flex-col gap-6 rounded-2xl overflow-hidden bg-gradient-to-br from-purple-50 to-sky-100 dark:from-gray-700 dark:to-gray-600">
-  <h2 class="px-6 text-2xl font-bold dark:text-white">Experience</h2>
+  <h2 class="px-6 text-2xl font-bold dark:text-white">Experience 🧾</h2>
   <div class="flex flex-col gap-1">
     {experiences.map(exp => (
       <div class="flex items-start space-x-4 px-6 py-4 hover:bg-white/50 dark:hover:bg-gray-800/50 transition-colors">
         <span class="text-2xl">{exp.emoji}</span>
         <div>
-          <h3 class="text-lg font-semibold dark:text-white">
-            {exp.company && (
-              <span>{exp.company}</span>
-            )}
-            {exp.project && (
-              <a href={exp.link} class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                {exp.project}
-              </a>
-            )}
+          <h3 class="flex flex-row items-center gap-2 text-lg font-semibold dark:text-white">
+            <a href={exp.link} target="_blank" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                {exp.company}{' '}
+            </a>
+            {exp.link && <img loading="lazy" src={`${exp.link}/favicon.ico`} class="inline-block w-4 h-4" />}
           </h3>
           {exp.products && (
             <div class="text-gray-600 dark:text-gray-400 mb-1">
               {exp.products.map((product, index) => (
                 <>
-                  <a href={product.link} class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                  <a href={product.link} target="_blank" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                    <img loading="lazy" src={`${product.link}/favicon.ico`} class="inline-block w-4 h-4" />{' '}
                     {product.name}
                   </a>
                   {index < exp.products.length - 1 && " • "}
