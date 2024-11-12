@@ -53,7 +53,7 @@ const currentYear = new Date().getFullYear();
       if (theme === 'dark') document.documentElement.classList.add('dark');
     </script>
   </head>
-  <body class="min-h-screen flex flex-col bg-gradient-to-br from-amber-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 min-h-screen font-sans font-['Inter'] transition-colors">
+  <body class="flex flex-col bg-gradient-to-br from-amber-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 min-h-screen font-sans font-['Inter'] transition-colors">
     <slot />
     <ThemeToggle />
     <Footer />
