@@ -39,11 +39,11 @@ const currentYear = new Date().getFullYear();
       if (theme === 'dark') document.documentElement.classList.add('dark');
     </script>
   </head>
-  <body class="bg-gradient-to-br from-amber-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 min-h-screen font-sans font-['Inter'] transition-colors">
+  <body class="min-h-screen flex flex-col bg-gradient-to-br from-amber-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 min-h-screen font-sans font-['Inter'] transition-colors">
     <slot />
     <ThemeToggle />
 
-    <footer class="max-w-3xl mx-auto px-6 py-8 text-center text-sm text-gray-600 dark:text-gray-400">
+    <footer class="mt-auto max-w-3xl mx-auto px-6 py-8 text-center text-sm text-gray-600 dark:text-gray-400">
       <div class="flex items-center justify-center space-x-2 mb-2">
         <span>Built with</span>
         <a
@@ -64,6 +64,20 @@ const currentYear = new Date().getFullYear();
           class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
         >
           Support my work
+        </a>
+        <span>•</span>
+        <a
+          href="/base64"
+          class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+        >
+          Convert Base64
+        </a>
+        <span>•</span>
+        <a
+          href="/color"
+          class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+        >
+          Convert Color
         </a>
       </div>
     </footer>

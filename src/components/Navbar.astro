@@ -1,0 +1,18 @@
+---
+const { showAvatar = true } = Astro.props;
+---
+<nav class="max-w-3xl mx-auto px-2 py-4 flex items-center gap-4">
+  {showAvatar && (
+    <div class="w-4 h-4 rounded-2xl overflow-hidden bg-gradient-to-br from-amber-100 to-blue-100 dark:from-gray-700 dark:to-gray-600 flex items-center justify-center flex-shrink-0">
+      <img
+          loading="eager"
+          src="/profile.jpeg"
+          alt="Nikolay Kost"
+          class="w-full h-full object-cover"
+        />
+    </div>
+  )}
+  <a href="/" class="text-sm font-bold dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+    Nikolay Kost
+  </a>
+</nav>

@@ -1,0 +1,34 @@
+---
+import Layout from './Layout.astro';
+import Navbar from '../components/Navbar.astro';
+
+const { frontmatter } = Astro.props;
+---
+
+<Layout title={`${frontmatter.title} - Nikolay Kost`}>
+  <Navbar />
+  <main class="max-w-3xl mx-auto px-6 py-12">
+    <article class="prose dark:prose-invert prose-lg max-w-none">
+      <h1>{frontmatter.title}</h1>
+      <div class="flex items-center gap-4 text-gray-600 dark:text-gray-400 mb-8">
+        <time datetime={frontmatter.date}>
+          {new Date(frontmatter.date).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          })}
+        </time>
+        {frontmatter.tags && (
+          <div class="flex gap-2">
+            {frontmatter.tags.map((tag: string) => (
+              <span class="text-sm bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+      <slot />
+    </article>
+  </main>
+</Layout>

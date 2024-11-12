@@ -1,0 +1,50 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+
+const posts = await Astro.glob('./*.md');
+const sortedPosts = posts.sort((a, b) =>
+  new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime()
+);
+---
+
+<Layout title="Blog - Nikolay Kost">
+  <Navbar />
+  <main class="max-w-3xl mx-auto px-6 py-12">
+    <h1 class="text-4xl font-bold mb-12 dark:text-white">Blog</h1>
+    <div class="space-y-12">
+      {sortedPosts.map((post) => (
+        <article class="group">
+          <a href={post.url} class="block">
+            <h2 class="text-2xl font-bold mb-2 group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400 transition-colors">
+              {post.frontmatter.title}
+            </h2>
+            <div class="flex items-center gap-4 text-gray-600 dark:text-gray-400 mb-4">
+              <time datetime={post.frontmatter.date}>
+                {new Date(post.frontmatter.date).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                })}
+              </time>
+              {post.frontmatter.tags && (
+                <div class="flex gap-2">
+                  {post.frontmatter.tags.map((tag: string) => (
+                    <span class="text-sm bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+            {post.frontmatter.description && (
+              <p class="text-gray-600 dark:text-gray-400">
+                {post.frontmatter.description}
+              </p>
+            )}
+          </a>
+        </article>
+      ))}
+    </div>
+  </main>
+</Layout>

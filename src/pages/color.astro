@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import ColorConverter from '../components/ColorConverter';
+---
+
+<Layout title="Color Converter">
+  <Navbar />
+  <main class="min-w-full self-stretch flex-grow flex items-center transition-colors duration-200">
+    <div class="w-full max-w-3xl mx-auto px-6">
+      <ColorConverter client:load />
+    </div>
+  </main>
+</Layout>
