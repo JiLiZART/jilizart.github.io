@@ -6,15 +6,24 @@ interface Props {
 }
 
 const { title } = Astro.props;
-
-const currentYear = new Date().getFullYear();
 ---
 
 <!doctype html>
-<html lang="en">
+<html>
   <head>
+    <link
+      rel="alternate"
+      hreflang="ru"
+      href="https://artkost.ru"
+    />
+    <link
+      rel="alternate"
+      hreflang="en"
+      href="https://artkost.dev"
+    />
     <meta charset="UTF-8" />
     <meta name="description" content="Nikolay Kost - JavaScript Developer specializing in web applications and efficient JavaScript solutions" />
+    <meta name="description" lang="ru" content="Николай Костюрин — разработчик JavaScript, специализирующийся на веб-приложениях и эффективных решениях JavaScript" />
     <meta name="viewport" content="width=device-width" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -23,21 +32,30 @@ const currentYear = new Date().getFullYear();
 
     <!-- Opengraph Meta Tags -->
     <meta property="og:url" content="https://artkost.dev/">
+    <meta property="og:url" lang="ru" content="https://artkost.dev/">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Nikolay Kost - JavaScript Developer">
+    <meta property="og:title" lang="ru" content="Николай Костюрин — JavaScript Разработчик">
     <meta property="og:description" content="Nikolay Kost - JavaScript Developer specializing in web applications and efficient JavaScript solutions">
+    <meta property="og:description" lang="ru" content="Николай Костюрин — разработчик JavaScript, специализирующийся на веб-приложениях и эффективных решениях JavaScript">
+
     <meta property="og:image" content="android-chrome-192x192.png">
 
     <!-- Twitter Meta Tags -->
     <meta property="twitter:domain" content="artkost.dev">
+    <meta property="twitter:domain" lang="ru" content="artkost.ru">
     <meta property="twitter:url" content="https://artkost.dev/">
+    <meta property="twitter:url" lang="ru" content="https://artkost.ru/">
     <meta name="twitter:site" content="@jilizart">
 
     <meta name="twitter:description" content="I specialize in building exceptional web applications and creating efficient JavaScript solutions. Currently focusing on exciting new projects and open-source contributions. ✨">
+    <meta name="twitter:description" lang="ru" content="Я специализируюсь на создании исключительных веб-приложений и создании эффективных решений JavaScript. В настоящее время сосредоточен на новых интересных проектах и ​​вкладах в open-source. ✨">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Nikolay Kost - JavaScript Developer">
+    <meta name="twitter:title" lang="ru" content="Nikolay Костюрин - JavaScript Разработчик">
     <meta name="twitter:image" content="android-chrome-192x192.png">
     <meta name="twitter:image:alt" content="Nikolay Kost - JavaScript Developer">
+    <meta name="twitter:image:alt" lang="ru" content="Nikolay Костюрин - JavaScript Разработчик">
 
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,11 +70,35 @@ const currentYear = new Date().getFullYear();
       })();
       if (theme === 'dark') document.documentElement.classList.add('dark');
     </script>
+    <style is:inline>
+        a:hover {
+           cursor: none;
+        }
+
+        .scrollbar::-webkit-scrollbar {
+            width: 6px;
+            background-color: transparent;
+        }
+
+        .scrollbar::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+            border-radius: 10px;
+            background-color: transparent;
+        }
+
+        .scrollbar::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+            background-color: #555;
+        }
+    </style>
   </head>
-  <body class="flex flex-col bg-gradient-to-br from-amber-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 min-h-screen font-sans font-['Inter'] transition-colors">
-    <slot />
-    <ThemeToggle />
-    <Footer />
+  <body class="flex flex-col bg-gradient-to-br from-amber-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 min-h-screen font-sans font-['Inter'] transition-colors relative flex h-screen w-full touch-none items-center justify-center overflow-hidden">
+    <main class="overflow-y-scroll w-full scrollbar">
+        <slot />
+        <ThemeToggle />
+        <Footer />
+    </main>
   </body>
 
 <!-- Cloudflare Web Analytics -->
@@ -71,7 +113,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     })(window,document,'script','dataLayer','GTM-MNDD3F42');</script>
 <!-- End Google Tag Manager -->
 
-<script type="application/ld+json">
+<script type="application/ld+json" lang="en">
 {
     "@context": "https://json-ld.org/contexts/person.jsonld",
     "name": "Nikolay Kosturin",
@@ -82,6 +124,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     "jobTitle": "JavaScript Developer",
     "image": "https://artkost.dev/profile.jpeg",
     "homepage": "https://artkost.dev",
+    "sameAs": [
+        "https://github.com/jilizart",
+        "https://x.com/jilizart",
+        "https://linkedin.com/in/nkostyurin",
+        "https://t.me/jilizart",
+        "https://twitter.com/jilizart"
+    ]
+}
+</script>
+<script type="application/ld+json" lang="ru">
+{
+    "@context": "https://json-ld.org/contexts/person.jsonld",
+    "name": "Николай Костюрин",
+    "nickname": "jilizart",
+    "born": "1989-12-29",
+    "email": "mailto:nk@artkost.ru",
+    "url": "https://artkost.ru",
+    "jobTitle": "JavaScript Разработчик",
+    "image": "https://artkost.ru/profile.jpeg",
+    "homepage": "https://artkost.ru",
     "sameAs": [
         "https://github.com/jilizart",
         "https://x.com/jilizart",

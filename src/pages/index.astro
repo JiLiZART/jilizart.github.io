@@ -5,6 +5,7 @@ import Experience from '../components/Experience.astro';
 import Contact from '../components/Contact.astro';
 import Tech from '../components/Tech.astro';
 import Crafts from '../components/Crafts.astro';
+import { Cursors } from '../components/Cursors';
 ---
 
 <Layout title="Nikolay Kost - JS Developer">
@@ -19,4 +20,5 @@ import Crafts from '../components/Crafts.astro';
         <Contact />
     </section>
   </main>
+<Cursors client:idle />
 </Layout>

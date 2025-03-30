@@ -1,31 +1,32 @@
 ---
-
+import {t, Trans} from "../helpers/t";
 ---
 
 <article class="w-full p-6 flex flex-col gap-6 rounded-2xl overflow-hidden bg-gradient-to-br from-purple-50 to-sky-100 dark:from-gray-700 dark:to-gray-600">
-    <h2 class="text-2xl font-bold dark:text-white">My Crafts 🏆</h2>
+    <h2 class="text-2xl font-bold dark:text-white">{t("My Crafts 🏆")}</h2>
     <div class="flex flex-col gap-6">
       <div class="flex flex-col gap-4">
         <h3 class="text-lg font-semibold dark:text-white">
-            📦 <a class="hover:text-gray-600 dark:hover:text-gray-400 text-blue-600 dark:text-blue-400 transition-colors" href="https://github.com/jilizart/bbob">BBob</a> - js library for parsing bb codes
+            <Trans>📦 <a class="hover:text-gray-600 dark:hover:text-gray-400 text-blue-600 dark:text-blue-400 transition-colors" href="https://github.com/jilizart/bbob">BBob</a> - js library for parsing bb codes</Trans>
         </h3>
-        <p class="text-gray-600 dark:text-gray-400">(these are the ones [b]some[/b]).
+        <p class="text-gray-600 dark:text-gray-400">
+            <Trans>(these are the ones [b]some[/b]).
             Designed for parsing and display in React (converts
             bbcode text -> AST -> React Node) Used to render tab on <a class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" href="https://ultimate-guitar.com">ultimate-guitar.com</a>. What made it possible to implement
             support for tooltips for cords and make it possible to print a tab in two columns with the correct
-            transferring cords and verses (to make it convenient to play)
+            transferring cords and verses (to make it convenient to play)</Trans>
         </p>
         <p class="text-gray-600 dark:text-gray-400">
-            Further it was also implemented on <a class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" href="https://musescore.com">musescore.com</a> to display comments and posts. Because the implementation in PHP on the backend could not cope and fell in memory (about 1GB). Moving rendering to the front accelerated the display of bb markup from seconds to 15ms on the entire page.
+            <Trans>Further it was also implemented on <a class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" href="https://musescore.com">musescore.com</a> to display comments and posts. Because the implementation in PHP on the backend could not cope and fell in memory (about 1GB). Moving rendering to the front accelerated the display of bb markup from seconds to 15ms on the entire page.</Trans>
         </p>
       </div>
       <div class="flex flex-col gap-4">
         <h3 class="text-lg font-semibold dark:text-white">
-            🎮 <a class="hover:text-gray-600 dark:hover:text-gray-400 text-blue-600 dark:text-blue-400 transition-colors" href="https://github.com/w3gh/ghost.js">Reverse engineering the Battle.net</a> protocol.
+            <Trans>🎮 <a class="hover:text-gray-600 dark:hover:text-gray-400 text-blue-600 dark:text-blue-400 transition-colors" href="https://github.com/w3gh/ghost.js">Reverse engineering the Battle.net</a> protocol.</Trans>
         </h3>
         <p class="text-gray-600 dark:text-gray-400">
-            As part of R&D, I reversed (via wireshark) and implemented the Battle.net protocol for the game Warcraft 3.
-            Completely implemented the protocol in Node.js. Some C-libraries are connected via <a class="hover:text-gray-600 dark:hover:text-gray-400 text-blue-600 dark:text-blue-400 transition-colors" href="https://github.com/node-ffi/node-ffi">node-ffi</a>
+            <Trans>As part of R&D, I reversed (via wireshark) and implemented the Battle.net protocol for the game Warcraft 3.
+            Completely implemented the protocol in Node.js. Some C-libraries are connected via <a class="hover:text-gray-600 dark:hover:text-gray-400 text-blue-600 dark:text-blue-400 transition-colors" href="https://github.com/node-ffi/node-ffi">node-ffi</a></Trans>
         </p>
       </div>
     </div>
