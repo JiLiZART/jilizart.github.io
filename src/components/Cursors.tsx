@@ -131,15 +131,17 @@ export const Cursors = () => {
         x={ownCursor.x}
         y={ownCursor.y}
       />
-      {cursors.map((cursor) => (
-        <Cursor
-          key={cursor.userId}
-          x={cursor.x}
-          y={cursor.y}
-          color={cursor.color}
-          message={cursor.userName}
-        />
-      ))}
+      {cursors
+        .filter((cur) => cur?.userId !== ownCursor?.userId)
+        .map((cursor) => (
+          <Cursor
+            key={cursor.userId}
+            x={cursor.x}
+            y={cursor.y}
+            color={cursor.color}
+            message={cursor.userName}
+          />
+        ))}
     </>
   );
 };
