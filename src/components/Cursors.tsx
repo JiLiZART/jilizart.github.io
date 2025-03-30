@@ -83,10 +83,12 @@ export const Cursors = () => {
     const channel = supabase
       .channel("cursors")
       .on("broadcast", { event: "cursor-move" }, ({ payload }) => {
-        setCursors((prev) => {
-          const newCursors = prev.filter((c) => c.userId !== payload.userId);
-          return [...newCursors, payload];
-        });
+        if (payload) {
+          setCursors((prev) => {
+            const newCursors = prev.filter((c) => c.userId !== payload.userId);
+            return [...newCursors, payload];
+          });
+        }
       })
       .subscribe();
 
@@ -116,6 +118,17 @@ export const Cursors = () => {
     document.body.style.cursor = "none";
 
     return () => {
+      channel.send({
+        type: "broadcast",
+        event: "cursor-move",
+        payload: {
+          x: 0,
+          y: 0,
+          userId,
+          userName,
+          color,
+        },
+      });
       window.removeEventListener("mousemove", handleMouseMove);
       channel.unsubscribe();
       document.body.style.cursor = "auto";
@@ -132,7 +145,7 @@ export const Cursors = () => {
         y={ownCursor.y}
       />
       {cursors
-        .filter((cur) => cur?.userId !== ownCursor?.userId)
+        .filter((cur) => cur?.userId !== ownCursor?.userId && cur?.x && cur?.y)
         .map((cursor) => (
           <Cursor
             key={cursor.userId}
