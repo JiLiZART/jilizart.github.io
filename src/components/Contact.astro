@@ -1,5 +1,6 @@
 ---
 import { SiGithub, SiX, SiLinkedin, SiGmail, SiTelegram } from 'react-icons/si';
+import {t} from "../helpers/t";
 
 const socials = [
   {
@@ -36,7 +37,7 @@ const socials = [
 ---
 
 <article class="w-full p-6">
-  <h2 class="text-2xl font-bold mb-8 dark:text-white">Let's Connect 🤙</h2>
+  <h2 class="text-2xl font-bold mb-8 dark:text-white">{t("Let's Connect 🤙")}</h2>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
     {socials.map(({ name, icon: Icon, link, username }) => (
       <a
@@ -60,7 +61,7 @@ const socials = [
             target="_blank"
             rel="noopener noreferrer"
         >
-            View CV
+            {t("View CV")}
         </a>
     </div>
   </div>

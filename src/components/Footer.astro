@@ -1,10 +1,12 @@
 ---
+
+import {t} from "../helpers/t";
 const currentYear = new Date().getFullYear();
 ---
 
 <footer class="mt-auto max-w-3xl mx-auto px-6 py-8 text-center text-sm text-gray-600 dark:text-gray-400">
     <div class="flex items-center justify-center space-x-2 mb-2">
-      <span>Built with</span>
+      <span>{t("Built with")}</span>
       <a
         href="https://astro.build"
         target="_blank"
@@ -16,27 +18,26 @@ const currentYear = new Date().getFullYear();
       </a>
     </div>
     <div class="space-x-3">
-      <span>© {currentYear} <a class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors" href="/">Nikolay Kost</a></span>
+      <span>© {currentYear} <a class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors" href="/">{t("Nikolay Kost")}</a></span>
       <span>•</span>
       <a
         href="/donate"
         class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
       >
-        Support my work
+        {t("Support my work")}
       </a>
       <span>•</span>
       <a
         href="/base64"
         class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
       >
-        Convert Base64
+        {t("Convert Base64")}
       </a>
       <span>•</span>
-      <a
-        href="/color"
+      <a href="/color"
         class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
       >
-        Convert Color
+        {t("Convert Color")}
       </a>
     </div>
   </footer>

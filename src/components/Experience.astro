@@ -1,16 +1,19 @@
 ---
+
+import {t} from "../helpers/t";
+import {Trans} from "../helpers/t";
 const experiences = [
   {
     emoji: "🫰",
     company: "HodlHodl",
     link: "https://hodlhodl.com/",
-    description: "Reimagined frontend infrastructure on top of Next.js"
+    description: t("Reimagined frontend infrastructure on top of Next.js")
   },
   {
     emoji: "📦",
     company: "Cube",
     link: "https://cube.dev",
-    description: "Developed UI Kit for SaaS service"
+    description: t("Developed UI Kit for SaaS service")
   },
   {
     emoji: "🎸",
@@ -25,24 +28,24 @@ const experiences = [
         link: "https://ultimate-guitar.com"
       }
     ],
-    description: "Contributed to music notation and guitar tablature platforms"
+    description: t("Contributed to music notation and guitar tablature platforms")
   },
   {
     emoji: "👷",
     company: "Skyeng",
     link: "https://skyeng.ru",
-    description: "Developed educational technology solutions"
+    description: t("Developed educational technology solutions")
   },
   {
     emoji: "👨‍🏫",
     company: "Medialooks",
     link: "https://medialooks.com",
-    description: "Designed Single Page Applications"
+    description: t("Designed Single Page Applications")
   }
 ];
 ---
 <article class="w-full py-6 flex flex-col gap-6 rounded-2xl overflow-hidden bg-gradient-to-br from-purple-50 to-sky-100 dark:from-gray-700 dark:to-gray-600">
-  <h2 class="px-6 text-2xl font-bold dark:text-white">Experience 🧾</h2>
+  <h2 class="px-6 text-2xl font-bold dark:text-white">{t("Experience 🧾")}</h2>
   <div class="flex flex-col gap-1">
     {experiences.map(exp => (
       <div class="flex items-start space-x-4 px-6 py-4 hover:bg-white/50 dark:hover:bg-gray-800/50 transition-colors">

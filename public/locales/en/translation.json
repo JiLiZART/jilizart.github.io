@@ -1,0 +1,17 @@
+{
+  "hero": {
+    "title": "Hey, I'm Nikolay 👋 JavaScript Developer"
+  },
+  "crafts": {
+    "bbob": {
+      "title": "📦 <0>BBob</0> - js library for parsing bb codes",
+      "desc1": "(these are the ones [b]some[/b]). Designed for parsing and display in React (converts bbcode text -> AST -> React Node) Used to render tab on <0>ultimate-guitar.com</0>. What made it possible to implement support for tooltips for cords and make it possible to print a tab in two columns with the correct transferring cords and verses (to make it convenient to play)",
+      "desc2": "Further it was also implemented on <0>musescore.com</0> to display comments and posts. Because the implementation in PHP on the backend could not cope and fell in memory (about 1GB). Moving rendering to the front accelerated the display of bb markup from seconds to 15ms on the entire page."
+    },
+    "ghost": {
+      "title": "🎮 <0>Reverse engineering the Battle.net</0> protocol.",
+      "desc": "As part of R&D, I reversed (via wireshark) and implemented the Battle.net protocol for the game Warcraft 3.\n             Completely implemented the protocol in Node.js. Some C-libraries are connected via <0>node-ffi</0>"
+    },
+    "crafts.bbob.desc1": "(these are the ones [b]some[/b]). Designed for parsing and display in React (converts bbcode text -> AST -> React Node) Used to render tab on <0>ultimate-guitar.com</0>. What made it possible to implement support for tooltips for cords and make it possible to print a tab in two columns with the correct transferring cords and verses (to make it convenient to play)"
+  }
+}

@@ -1,30 +1,30 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navbar from '../components/Navbar.astro';
-import { FiCopy } from 'react-icons/fi';
-import { SiBitcoin, SiEthereum, SiTether } from 'react-icons/si';
+import { t } from "i18next";
+import { FiCopy } from "react-icons/fi";
+import { SiBitcoin, SiEthereum, SiTether } from "react-icons/si";
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
 
 const cryptoAddresses = [
-  {
-    name: 'Bitcoin (BTC)',
-    address: 'bc1q3llaxsrmpzhysl6nxy3ke346rlx3xqnqjg8xfe',
-    icon: SiBitcoin,
-    color: 'text-[#F7931A]'
-  },
-  {
-    name: 'Ethereum (ETH)',
-    address: '0x810Da3855eD0273af493e5f7e96B06AeDd52adAC',
-    icon: SiEthereum,
-    color: 'text-[#627EEA]'
-  },
-  {
-    name: 'USDT (TRC-20)',
-    address: 'TT94uVjJho8n47xbdfNYz6vdebgmKFpxAT',
-    icon: SiTether,
-    color: 'text-[#26A17B]'
-  }
+    {
+        name: "Bitcoin (BTC)",
+        address: "bc1q3llaxsrmpzhysl6nxy3ke346rlx3xqnqjg8xfe",
+        icon: SiBitcoin,
+        color: "text-[#F7931A]"
+    },
+    {
+        name: "Ethereum (ETH)",
+        address: "0x810Da3855eD0273af493e5f7e96B06AeDd52adAC",
+        icon: SiEthereum,
+        color: "text-[#627EEA]"
+    },
+    {
+        name: "USDT (TRC-20)",
+        address: "TT94uVjJho8n47xbdfNYz6vdebgmKFpxAT",
+        icon: SiTether,
+        color: "text-[#26A17B]"
+    }
 ];
-
 const copyToClipboard = `
   function copyAddress(address) {
     navigator.clipboard.writeText(address);
@@ -37,13 +37,13 @@ const copyToClipboard = `
 `;
 ---
 
-<Layout title="Donate - Nikolay Kost">
+<Layout title={t("Donate - Nikolay Kost")}>
   <Navbar />
   <main class="max-w-3xl mx-auto px-6 py-20">
-    <h1 class="text-4xl font-bold mb-8 dark:text-white">Support My Work 🙏</h1>
+    <h1 class="text-4xl font-bold mb-8 dark:text-white">{t("Support My Work 🙏")}</h1>
 
     <p class="text-lg text-gray-600 dark:text-gray-400 mb-12">
-      If you find my work valuable and would like to support my open-source contributions, you can donate using cryptocurrency. Your support helps me dedicate more time to creating useful content and tools.
+      {t("If you find my work valuable and would like to support my open-source contributions, you can donate using cryptocurrency. Your support helps me dedicate more time to creating useful content and tools.")}
     </p>
 
     <div class="space-y-6">
@@ -63,7 +63,7 @@ const copyToClipboard = `
               class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
             >
               <FiCopy className="w-4 h-4" />
-              Copy
+              {t("Copy")}
             </button>
           </div>
         </div>
