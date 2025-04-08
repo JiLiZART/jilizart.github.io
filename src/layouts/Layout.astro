@@ -1,6 +1,7 @@
 ---
 import ThemeToggle from '../components/ThemeToggle.astro'
 import Footer from '../components/Footer.astro'
+import Posthog from '../components/posthog.astro'
 interface Props {
   title: string;
 }
@@ -104,6 +105,8 @@ const { title } = Astro.props;
 <!-- Cloudflare Web Analytics -->
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cc1c531698974a028fa31d4216f2a9c7"}'></script>
 <!-- End Cloudflare Web Analytics -->
+
+<Posthog />
 
 <!-- Google Tag Manager -->
 <!--<script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':-->
