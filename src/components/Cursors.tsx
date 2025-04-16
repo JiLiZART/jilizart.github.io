@@ -135,15 +135,17 @@ export const Cursors = () => {
     };
   }, []);
 
+  const ownCursorContent = ownCursor.x && ownCursor.y && <Cursor
+      key="own"
+      color={"#000"}
+      message={"You"}
+      x={ownCursor.x}
+      y={ownCursor.y}
+  />
+
   return (
     <>
-      <Cursor
-        key="own"
-        color={"#000"}
-        message={"You"}
-        x={ownCursor.x}
-        y={ownCursor.y}
-      />
+      {ownCursorContent}
       {cursors
         .filter((cur) => cur?.userId !== ownCursor?.userId && cur?.x && cur?.y)
         .map((cursor) => (

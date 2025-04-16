@@ -25,21 +25,25 @@ import TankGame from "../games/TankGame";
         <Contact />
     </section>
   </main>
-  <Cursors client:idle />
+  <Cursors client:media="(min-width: 1024px)" />
 </Layout>
 
 <script>
-    document.getElementById('egg-trigger').addEventListener('click', () => {
-        document.getElementById('egg').style.display = 'block'
-    })
-    document.addEventListener('keydown', (e) => {
-        if (e.key === ' ') {
-            e.preventDefault();
-        }
-    })
-    document.addEventListener('keyup', (e) => {
-        if (e.key === ' ') {
-            e.preventDefault();
-        }
-    })
+    const isTouchDevice = 'ontouchstart' in window
+
+    if (!isTouchDevice) {
+        document.getElementById('egg-trigger').addEventListener('click', () => {
+            document.getElementById('egg').style.display = 'block'
+        })
+        document.addEventListener('keydown', (e) => {
+            if (e.key === ' ') {
+                e.preventDefault();
+            }
+        })
+        document.addEventListener('keyup', (e) => {
+            if (e.key === ' ') {
+                e.preventDefault();
+            }
+        })
+    }
 </script>
