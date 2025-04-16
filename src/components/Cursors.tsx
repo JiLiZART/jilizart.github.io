@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
-import { RealtimeChannel } from "@supabase/supabase-js";
 
-type Props = {
+type CursorProps = {
   color: string;
   x: number;
   y: number;
   message?: string;
 };
 
-function Cursor({ color, x, y, message }: Props) {
+function Cursor({ color, x, y, message }: CursorProps) {
   return (
     <div
       className="pointer-events-none absolute top-0 left-0"
@@ -54,94 +53,91 @@ interface CursorPosition {
   color: string;
 }
 
-const supabase = createClient(
-  import.meta.env.PUBLIC_SUPABASE_URL!,
-  import.meta.env.PUBLIC_SUPABASE_ANON_KEY!
-);
+const PUBLIC_SUPABASE_URL = import.meta.env.PUBLIC_SUPABASE_URL!
+const PUBLIC_SUPABASE_ANON_KEY = import.meta.env.PUBLIC_SUPABASE_ANON_KEY!
+
+const supabase = createClient(PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY);
 
 const COLORS = ["#DC2626", "#D97706", "#059669", "#7C3AED", "#DB2777"];
 
-export const Cursors = () => {
-  const [cursors, setCursors] = useState<CursorPosition[]>([]);
-  const [ownCursor, setOwnCursor] = useState<CursorPosition>({
+const userId = Math.random().toString(36).substring(7);
+const userName = `${userId.slice(0, 4)}`;
+const color = COLORS[Math.floor(Math.random() * COLORS.length)];
+
+const createClientPosition = (x = 0, y = 0) => ({
+  x,
+  y,
+  userId,
+  userName,
+  color,
+});
+
+const defaultOwnCursor = {
     x: 0,
     y: 0,
     userId: "own",
     userName: "You",
     color: "#000",
-  });
-  const [channel, setChannel] = useState<RealtimeChannel | null>(null);
+}
+
+// Subscribe to cursor updates
+const channel = supabase.channel("cursors")
+
+export const Cursors = () => {
+  const [cursors, setCursors] = useState<CursorPosition[]>([]);
+  const [ownCursor, setOwnCursor] = useState<CursorPosition>(defaultOwnCursor);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+      const onCursorMove = ({ payload }) => {
+          if (payload) {
+              setCursors((prev) => {
+                  const newCursors = prev.filter((c) => c.userId !== payload.userId);
 
-    const userId = Math.random().toString(36).substring(7);
-    const userName = `${userId.slice(0, 4)}`;
-    const color = COLORS[Math.floor(Math.random() * COLORS.length)];
+                  return [...newCursors, payload];
+              });
+          }
+      }
 
-    // Subscribe to cursor updates
-    const channel = supabase
-      .channel("cursors")
-      .on("broadcast", { event: "cursor-move" }, ({ payload }) => {
-        if (payload) {
-          setCursors((prev) => {
-            const newCursors = prev.filter((c) => c.userId !== payload.userId);
-            return [...newCursors, payload];
+      channel.on("broadcast", { event: "cursor-move" }, onCursorMove).subscribe();
+
+      const sendCursorMove = (position: CursorPosition) => {
+          channel.send({
+              type: "broadcast",
+              event: "cursor-move",
+              payload: position,
           });
         }
-      })
-      .subscribe();
-
-    setChannel(channel);
 
     // Handle mouse movement
     const handleMouseMove = (e: MouseEvent) => {
-      const position = {
-        x: e.clientX,
-        y: e.clientY,
-        userId,
-        userName,
-        color,
-      };
-
-      channel.send({
-        type: "broadcast",
-        event: "cursor-move",
-        payload: position,
-      });
-
+      const position = createClientPosition(e.clientX, e.clientY);
+      sendCursorMove(position);
       setOwnCursor(position);
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-
     document.body.style.cursor = "none";
 
     return () => {
-      channel.send({
-        type: "broadcast",
-        event: "cursor-move",
-        payload: {
-          x: 0,
-          y: 0,
-          userId,
-          userName,
-          color,
-        },
-      });
-      window.removeEventListener("mousemove", handleMouseMove);
+      const position = createClientPosition(0, 0);
+      sendCursorMove(position);
       channel.unsubscribe();
+
+      window.removeEventListener("mousemove", handleMouseMove);
       document.body.style.cursor = "auto";
     };
   }, []);
 
-  const ownCursorContent = ownCursor.x && ownCursor.y && <Cursor
-      key="own"
-      color={"#000"}
-      message={"You"}
-      x={ownCursor.x}
-      y={ownCursor.y}
-  />
+  const ownCursorContent = ownCursor.x && ownCursor.y && (
+      <Cursor
+          key="own"
+          color={defaultOwnCursor.color}
+          message={defaultOwnCursor.userName}
+          x={ownCursor.x}
+          y={ownCursor.y}
+      />
+  )
 
   return (
     <>
