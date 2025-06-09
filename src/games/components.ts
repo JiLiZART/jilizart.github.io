@@ -20,7 +20,12 @@ export class Player {
 }
 
 export class Movement {
-  constructor(public speed: number, public direction: string) {}
+  constructor(public speed: number, public direction: string, public isMoving = false) {}
+
+  public move(direction: string, isMoving: boolean) {
+      this.direction = direction
+      this.isMoving = isMoving
+  }
 }
 
 export class DirectionChange {
@@ -56,6 +61,7 @@ export class Tank {
     public color: string,
     public lastShot: number,
     public shootCooldown: number,
+    public isShooting = false
   ) {}
 }
 

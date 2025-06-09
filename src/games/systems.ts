@@ -73,19 +73,23 @@ export class MovementSystem {
             let newX = position.x
             let newY = position.y
 
-            switch (movement.direction) {
-                case "up":
-                    newY -= movement.speed * deltaTime;
-                    break;
-                case "down":
-                    newY += movement.speed * deltaTime;
-                    break;
-                case "left":
-                    newX -= movement.speed * deltaTime;
-                    break;
-                case "right":
-                    newX += movement.speed * deltaTime;
-                    break;
+            console.log(movement.isMoving, movement.direction, movement.speed)
+
+            if (movement.isMoving) {
+                switch (movement.direction) {
+                    case "up":
+                        newY -= movement.speed;
+                        break;
+                    case "down":
+                        newY += movement.speed;
+                        break;
+                    case "left":
+                        newX -= movement.speed;
+                        break;
+                    case "right":
+                        newX += movement.speed;
+                        break;
+                }
             }
 
             if (isValidPosition(this.world, new Position(newX, position.y, position.width, position.height))) {
@@ -108,7 +112,7 @@ export class ShootingSystem {
         const playerId = this.world.getComponent(this.world.id, Player).id;
 
         for (const [entityId, tank] of tanks) {
-            if (!tank.lastShot) continue;
+            if (!tank.isShooting) continue;
             if (currentTime - tank.lastShot < tank.shootCooldown) continue;
 
             const position = this.world.getComponent(entityId, Position);
@@ -154,6 +158,7 @@ export class ShootingSystem {
                 ]
             )
 
+            tank.isShooting = false
             tank.lastShot = currentTime;
         }
     }
@@ -180,25 +185,27 @@ export class CollisionSystem {
 
             if (!movement) continue;
             if (!bulletPos) continue;
+            let newX = bulletPos.x
+            let newY = bulletPos.y
 
             // Move bullet
             switch (movement.direction) {
                 case "up":
-                    bulletPos.y -= movement.speed
+                    newY -= movement.speed
                     break
                 case "down":
-                    bulletPos.y += movement.speed
+                    newY += movement.speed
                     break
                 case "left":
-                    bulletPos.x -= movement.speed
+                    newX -= movement.speed
                     break
                 case "right":
-                    bulletPos.x += movement.speed
+                    newX += movement.speed
                     break
             }
 
             // Check if bullet is out of bounds
-            if (bulletPos.x < 0 || bulletPos.x > this.world.width || bulletPos.y < 0 || bulletPos.y > this.world.height) {
+            if (newX < 0 || newX > this.world.width || newY < 0 || newY > this.world.height) {
                 this.world.removeEntity(bulletId)
 
                 continue
@@ -326,25 +333,28 @@ export class CollisionSystem {
             }
 
             // Check if new position is valid
-            if (isValidPosition(this.world, new Position(newEnemyX, enemyPos.y, enemyPos.width, enemyPos.height))) {
-                enemyPos.x = newEnemyX
-            } else {
+            if (!isValidPosition(this.world, new Position(newEnemyX, enemyPos.y, enemyPos.width, enemyPos.height))) {
                 // Change direction if blocked
                 movement.direction = randomDirection()
                 directionChange.lastChange = timestamp
             }
+            // else {
+            //     enemyPos.x = newEnemyX
+            // }
 
-            if (isValidPosition(this.world, new Position(enemyPos.x, newEnemyY, enemyPos.width, enemyPos.height))) {
-                enemyPos.y = newEnemyY
-            } else {
+            if (!isValidPosition(this.world, new Position(enemyPos.x, newEnemyY, enemyPos.width, enemyPos.height))) {
                 // Change direction if blocked
                 movement.direction = randomDirection()
                 directionChange.lastChange = timestamp
             }
+            // else {
+            //     enemyPos.y = newEnemyY
+            // }
 
             // Enemy shooting
             if (timestamp - enemy.lastShot > enemy.shootCooldown) {
                 // enemyShoot(enemy)
+                enemy.isShooting = true
                 enemy.lastShot = timestamp
             }
 
