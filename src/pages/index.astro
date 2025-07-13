@@ -5,27 +5,32 @@ import Experience from '../components/Experience.astro';
 import Contact from '../components/Contact.astro';
 import Tech from '../components/Tech.astro';
 import Crafts from '../components/Crafts.astro';
-import { Cursors } from '../components/Cursors';
+import {Cursors} from '../components/Cursors';
 import TankGame from "../games/TankGame";
-
+import {ClickSpark} from "../components/ClickSpark";
 ---
 
 <Layout title="Nikolay Kost - JS Developer">
-  <main class="max-w-6xl mx-auto px-6 py-20 flex flex-col gap-6">
-    <Hero />
-    <section id="egg" style="display: none">
-        <TankGame client:visible />
-    </section>
-    <section class="flex flex-row sm:flex-col flex-wrap gap-6">
-        <Tech />
-        <section class="grid md:grid-cols-2 gap-6">
-            <Crafts />
-            <Experience />
+    <main class="max-w-6xl mx-auto px-6 py-20 flex flex-col gap-6">
+        <ClickSpark client:media="(min-width: 1024px)">
+            <Hero/>
+        </ClickSpark>
+        <!--<section id="egg" style="display: none">-->
+        <!--    <TankGame client:visible />-->
+        <!--</section>-->
+        <section class="flex flex-row sm:flex-col flex-wrap gap-6">
+            <ClickSpark client:media="(min-width: 1024px)">
+                <Tech />
+            </ClickSpark>
+            <section class="grid md:grid-cols-2 gap-6">
+                <Crafts/>
+                <Experience/>
+            </section>
+            <Contact/>
         </section>
-        <Contact />
-    </section>
-  </main>
-  <Cursors client:media="(min-width: 1024px)" />
+    </main>
+
+    <Cursors client:media="(min-width: 1024px)"/>
 </Layout>
 
 <script>
