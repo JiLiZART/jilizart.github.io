@@ -1,6 +1,49 @@
-import React, { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { FiCopy, FiCheck } from "react-icons/fi";
 import Color from "colorjs.io";
+
+const copyToClipboard = async (value: string) => {
+    await navigator.clipboard.writeText(value);
+};
+
+const detectFormat = (value: string): string | null => {
+    value = value.trim().toLowerCase();
+
+    if (value.startsWith("#") && value.length > 2) return "hex";
+    if (value.startsWith("rgb")) return "rgb";
+    if (value.startsWith("hsl")) return "hsl";
+    if (value.startsWith("cmyk")) return "cmyk";
+    if (value.startsWith("oklch")) return "oklch";
+
+    return "hex";
+};
+
+const isDarkMode = () => {
+    return typeof window !== "undefined" &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+}
+
+const rgbToCmyk = (r: number, g: number, b: number) => {
+    let c = 1 - r / 255;
+    let m = 1 - g / 255;
+    let y = 1 - b / 255;
+    let k = Math.min(c, m, y);
+
+    if (k === 1) {
+        return { c: 0, m: 0, y: 0, k: 100 };
+    }
+
+    c = Math.round(((c - k) / (1 - k)) * 100);
+    m = Math.round(((m - k) / (1 - k)) * 100);
+    y = Math.round(((y - k) / (1 - k)) * 100);
+    k = Math.round(k * 100);
+
+    return { c, m, y, k };
+};
+
+const rgbToHex = (r, g, b) => {
+    return "#" + (1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1);
+}
 
 interface ColorFormat {
   id: string;
@@ -17,49 +60,27 @@ const ColorConverter: React.FC = () => {
       return color.luminance > 0.5 ? "#000000" : "#ffffff";
     }
 
-    if (
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches
-    ) {
+    if (isDarkMode()) {
       return "#FFFFFF";
     }
 
     return "#000000";
   }, [color, typeof window]);
 
-  const detectFormat = (value: string): string | null => {
-    value = value.trim().toLowerCase();
-    if (value.startsWith("#") && value.length > 2) return "hex";
-    if (value.startsWith("rgb")) return "rgb";
-    if (value.startsWith("hsl")) return "hsl";
-    if (value.startsWith("cmyk")) return "cmyk";
-    if (value.startsWith("oklch")) return "oklch";
-    return null;
-  };
-
-  const rgbToCmyk = (r: number, g: number, b: number) => {
-    let c = 1 - r / 255;
-    let m = 1 - g / 255;
-    let y = 1 - b / 255;
-    let k = Math.min(c, m, y);
-
-    if (k === 1) {
-      return { c: 0, m: 0, y: 0, k: 100 };
-    }
-
-    c = Math.round(((c - k) / (1 - k)) * 100);
-    m = Math.round(((m - k) / (1 - k)) * 100);
-    y = Math.round(((y - k) / (1 - k)) * 100);
-    k = Math.round(k * 100);
-
-    return { c, m, y, k };
-  };
-
   const formats: ColorFormat[] = [
     {
       id: "hex",
       label: "HEX",
-      fn: (color) => color.toString({ format: "hex" }).toUpperCase(),
+      fn: (color) => {
+          const rgb = color.to('srgb');
+          const [r, g, b] = rgb.coords.map((c) => Math.round(c * 255));
+          const hex = rgbToHex(r, g, b);
+
+          debugger;
+
+          return hex.toString().toUpperCase();
+
+      },
     },
     {
       id: "rgb",
@@ -133,7 +154,13 @@ const ColorConverter: React.FC = () => {
           newColor = new Color("oklch", [l / 100, c, h]);
         }
       } else {
-        newColor = new Color(value);
+        const color = !value.startsWith('#') && format === 'hex' ? `#${value}` : value;
+
+        try {
+            newColor = new Color(color);
+        } catch (error) {
+            // console.error("Invalid color format:", error);
+        }
       }
 
       if (newColor) {
@@ -150,11 +177,9 @@ const ColorConverter: React.FC = () => {
 
     if (color) {
       timeout = setTimeout(() => {
-        const main = document.querySelector("main");
+        const main = document.querySelector("body > main") as HTMLElement;
 
-        console.log(color, color.toJSON());
-
-        if (main) {
+        if (main && main.style) {
           main.style.backgroundColor = color.toString();
         }
       }, 500);
@@ -165,74 +190,70 @@ const ColorConverter: React.FC = () => {
     };
   }, [color]);
 
-  const copyToClipboard = async (value: string) => {
-    await navigator.clipboard.writeText(value);
-  };
+  const placeholder = "Try #A4CCD7, rgb(164, 204, 215), hsl(195, 37%, 74%), cmyk(24%, 5%, 0%, 16%), or oklch(82% 0.04 216)"
 
   return (
-    <div className="max-w-xs mx-auto space-y-8">
-      <div className="relative">
-        <input
-          type="text"
-          id="colorInput"
-          value={inputValue}
-          onChange={(e) => {
-            setInputValue(e.target.value);
-            handleColorInput(e.target.value);
-          }}
-          placeholder="Try #A4CCD7, rgb(164, 204, 215), hsl(195, 37%, 74%), cmyk(24%, 5%, 0%, 16%), or oklch(82% 0.04 216)"
-          className="w-full p-4 rounded-lg text-center text-lg font-mono transition-colors duration-200 bg-transparent border-2"
-          style={{ color: textColor, borderColor: textColor }}
-        />
-      </div>
+      <div className="max-w-xs mx-auto space-y-8">
+          <div className="relative">
+              <input
+                  type="text"
+                  id="colorInput"
+                  value={inputValue}
+                  onChange={(e) => {
+                      setInputValue(e.target.value);
+                      handleColorInput(e.target.value);
+                  }}
+                  placeholder={placeholder}
+                  className="w-full p-4 rounded-lg text-center text-lg font-mono transition-colors duration-200 bg-transparent border-2"
+                  style={{color: textColor, borderColor: textColor}}
+              />
+          </div>
 
-      {color && (
-        <div className="space-y-4">
-          {formats
-            .filter((f) => f.id !== sourceFormat)
-            .map((format) => {
-              const colorValue = format.fn(color);
-              return (
-                <ColorFormatItem
-                  key={format.id}
-                  label={format.label}
-                  value={colorValue}
-                  textColor={textColor}
-                  onCopy={() => copyToClipboard(colorValue)}
-                />
-              );
-            })}
-        </div>
-      )}
-    </div>
+          <div className="space-y-4 min-h-[320px]">
+              {color && formats
+                  .filter((f) => f.id !== sourceFormat)
+                  .map((format) => {
+                      const colorValue = format.fn(color);
+                      return (
+                          <ColorFormatItem
+                              key={format.id}
+                              label={format.label}
+                              value={colorValue}
+                              textColor={textColor}
+                              onCopy={() => copyToClipboard(colorValue)}
+                          />
+                      );
+                  })}
+          </div>
+      </div>
   );
 };
 
 interface ColorFormatItemProps {
-  label: string;
-  value: string;
-  textColor: string;
-  onCopy: () => void;
+    label: string;
+    value: string;
+    textColor: string;
+    onCopy: () => void;
 }
 
 const ColorFormatItem: React.FC<ColorFormatItemProps> = ({
-  label,
-  value,
-  textColor,
-  onCopy,
-}) => {
-  const [copied, setCopied] = useState(false);
+                                                             label,
+                                                             value,
+                                                             textColor,
+                                                             onCopy,
+                                                         }) => {
+    const [copied, setCopied] = useState(false);
 
-  const handleCopy = async () => {
-    await onCopy();
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1000);
-  };
+    const handleCopy = async () => {
+        await onCopy();
+        setCopied(true);
+        setTimeout(() => setCopied(false), 1000);
+    };
 
-  return (
-    <div
-      className="group flex items-center justify-between p-2 rounded-lg cursor-pointer transition-colors"
-      onClick={handleCopy}
+    return (
+        <div
+            className="group flex items-center justify-between p-2 rounded-lg cursor-pointer transition-colors"
+            onClick={handleCopy}
       style={{ color: textColor }}
     >
       <code className="text-lg font-mono">{value}</code>

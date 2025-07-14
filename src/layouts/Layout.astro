@@ -3,24 +3,24 @@ import ThemeToggle from '../components/ThemeToggle.astro'
 import Footer from '../components/Footer.astro'
 import Posthog from '../components/Posthog.astro'
 interface Props {
-  title: string;
+    title: string;
 }
 
 const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html>
-  <head>
+<html class="font-sans font-['Inter']">
+<head>
     <link
-      rel="alternate"
-      hreflang="ru"
-      href="https://artkost.ru"
+        rel="alternate"
+        hreflang="ru"
+        href="https://artkost.ru"
     />
     <link
-      rel="alternate"
-      hreflang="en"
-      href="https://artkost.dev"
+        rel="alternate"
+        hreflang="en"
+        href="https://artkost.dev"
     />
     <meta charset="UTF-8" />
     <meta name="description" content="Nikolay Kost - JavaScript Developer specializing in web applications and efficient JavaScript solutions" />
@@ -63,17 +63,17 @@ const { title } = Astro.props;
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script is:inline>
-      const theme = (() => {
-        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-          return localStorage.getItem('theme');
-        }
-        return 'light';
-      })();
-      if (theme === 'dark') document.documentElement.classList.add('dark');
+        const theme = (() => {
+            if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+                return localStorage.getItem('theme');
+            }
+            return 'light';
+        })();
+        if (theme === 'dark') document.documentElement.classList.add('dark');
     </script>
     <style is:inline>
         a:hover {
-           cursor: none;
+            cursor: none;
         }
 
         .scrollbar::-webkit-scrollbar {
@@ -92,15 +92,36 @@ const { title } = Astro.props;
             -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
             background-color: #555;
         }
+
+        body {
+            background-color: #fff9f5;
+        }
+
+        .backdrop {
+            background-image: radial-gradient(circle at 20% 80%, rgba(255, 220, 190, 0.3) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(255, 245, 238, 0.35) 0%, transparent 50%),
+            radial-gradient(circle at 40% 40%, rgba(255, 210, 180, 0.15) 0%, transparent 50%);
+        }
+
+        body.dark {
+            background-color: black;
+        }
+
+        .dark .backdrop {
+            background-image: radial-gradient(circle at 50% 100%, rgba(70, 85, 110, 0.5) 0%, transparent 60%),
+            radial-gradient(circle at 50% 100%, rgba(99, 102, 241, 0.4) 0%, transparent 70%),
+            radial-gradient(circle at 50% 100%, rgba(181, 184, 208, 0.3) 0%, transparent 80%);
+        }
     </style>
-  </head>
-  <body class="flex flex-col bg-gradient-to-br from-amber-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 min-h-screen font-sans font-['Inter'] transition-colors relative h-screen w-full touch-none items-center justify-center overflow-hidden">
-    <main class="overflow-y-scroll w-full scrollbar">
-        <slot />
-        <ThemeToggle />
-        <Footer />
-    </main>
-  </body>
+</head>
+<body class="flex flex-col dark:bg-black min-h-screen transition-colors relative h-screen w-full bg-[#fff9f5] touch-none items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0 backdrop" />
+<main id="main" role="main" class="overflow-y-scroll overflow-x-hidden absolute inset-0 scrollbar">
+    <slot />
+    <ThemeToggle />
+    <Footer />
+</main>
+</body>
 
 <!-- Cloudflare Web Analytics -->
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cc1c531698974a028fa31d4216f2a9c7"}'></script>
@@ -117,43 +138,43 @@ const { title } = Astro.props;
 <!-- End Google Tag Manager -->
 
 <script type="application/ld+json" lang="en">
-{
-    "@context": "https://json-ld.org/contexts/person.jsonld",
-    "name": "Nikolay Kosturin",
-    "nickname": "jilizart",
-    "born": "1989-12-29",
-    "email": "mailto:nk@artkost.dev",
-    "url": "https://artkost.dev",
-    "jobTitle": "JavaScript Developer",
-    "image": "https://artkost.dev/profile.jpeg",
-    "homepage": "https://artkost.dev",
-    "sameAs": [
+    {
+        "@context": "https://json-ld.org/contexts/person.jsonld",
+        "name": "Nikolay Kosturin",
+        "nickname": "jilizart",
+        "born": "1989-12-29",
+        "email": "mailto:nk@artkost.dev",
+        "url": "https://artkost.dev",
+        "jobTitle": "JavaScript Developer",
+        "image": "https://artkost.dev/profile.jpeg",
+        "homepage": "https://artkost.dev",
+        "sameAs": [
         "https://github.com/jilizart",
         "https://x.com/jilizart",
         "https://linkedin.com/in/nkostyurin",
         "https://t.me/jilizart",
         "https://twitter.com/jilizart"
     ]
-}
+    }
 </script>
 <script type="application/ld+json" lang="ru">
-{
-    "@context": "https://json-ld.org/contexts/person.jsonld",
-    "name": "Николай Костюрин",
-    "nickname": "jilizart",
-    "born": "1989-12-29",
-    "email": "mailto:nk@artkost.ru",
-    "url": "https://artkost.ru",
-    "jobTitle": "JavaScript Разработчик",
-    "image": "https://artkost.ru/profile.jpeg",
-    "homepage": "https://artkost.ru",
-    "sameAs": [
+    {
+        "@context": "https://json-ld.org/contexts/person.jsonld",
+        "name": "Николай Костюрин",
+        "nickname": "jilizart",
+        "born": "1989-12-29",
+        "email": "mailto:nk@artkost.ru",
+        "url": "https://artkost.ru",
+        "jobTitle": "JavaScript Разработчик",
+        "image": "https://artkost.ru/profile.jpeg",
+        "homepage": "https://artkost.ru",
+        "sameAs": [
         "https://github.com/jilizart",
         "https://x.com/jilizart",
         "https://linkedin.com/in/nkostyurin",
         "https://t.me/jilizart",
         "https://twitter.com/jilizart"
     ]
-}
+    }
 </script>
 </html>

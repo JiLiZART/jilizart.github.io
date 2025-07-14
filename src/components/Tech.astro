@@ -1,5 +1,6 @@
 ---
 import { SiSvelte, SiNuxtdotjs, SiSass, SiStyledcomponents, SiExpress, SiNginx, SiLinux, SiTypescript, SiTailwindcss, SiBun, SiVercel, SiVuedotjs, SiGitlab, SiGithub, SiPnpm, SiNpm, SiYarn, SiWebpack, SiGit, SiVite, SiJest, SiFastify, SiDocker, SiNextdotjs, SiNodedotjs, SiReact, SiRedux, SiJavascript } from "react-icons/si";
+import {ClickSpark} from "./ClickSpark";
 
 const tech = [
     { name: "JavaScript", icon: SiJavascript, weight: 5, bg: 'bg-amber-200' },
@@ -41,13 +42,13 @@ const tech = [
     <h2 class="text-2xl font-bold dark:text-white">I am working with <span class="hover:bg-slate-200 rounded" id="egg-trigger">🛠</span></h2>
     <ul class="cloud gap-4" role="navigation" aria-label="Webdev tech stack">
         {tech.map(({ name, icon: Icon, weight, bg }) => (
-          <li class={`flex flex-row items-center gap-2 px-2 py-1 rounded-lg text-gray-600 dark:text-gray-400 ${bg} dark:bg-gray-800/50 transition-colors`} data-weight={weight}>
-              <Icon className="w-4 h-4" />
-              {name}
-          </li>
+            <li class={`flex flex-row items-center gap-2 px-2 py-1 rounded-lg text-gray-600 dark:text-gray-400 ${bg} dark:bg-gray-800/50 transition-colors`} data-weight={weight}>
+                <Icon className="w-4 h-4" />
+                {name}
+            </li>
         ))}
     </ul>
-  </article>
+</article>
 
 <style>
 .cloud {
