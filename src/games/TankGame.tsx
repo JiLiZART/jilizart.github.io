@@ -24,6 +24,31 @@ const KEY_DOWN = "s"
 const KEY_LEFT = "a"
 const KEY_RIGHT = "d"
 
+function gameBoot() {
+    const world = new World();
+    const movementSystem = new MovementSystem(world);
+    const shootingSystem = new ShootingSystem(world);
+    const collisionSystem = new CollisionSystem(world);
+    const powerupSystem = new PowerupSystem(world);
+    const enemySpawnSystem = new EnemySpawnSystem(world);
+    const explosionSystem = new ExplosionSystem(world);
+    const keyboardSystem = new KeyboardSystem(world);
+    const renderSystem = new RenderSystem(world);
+    const directorSystem = new DirectorSystem(world);
+
+    return {
+        world,
+        movementSystem,
+        shootingSystem,
+        collisionSystem,
+        powerupSystem,
+        enemySpawnSystem,
+        explosionSystem,
+        keyboardSystem,
+        renderSystem,
+        directorSystem,
+}
+
 export default function TankGame() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [gameStarted, setGameStarted] = useState(false);
@@ -32,27 +57,7 @@ export default function TankGame() {
     const [lives, setLives] = useState(3);
     const [gameOver, setGameOver] = useState(false);
 
-    const world = useRef<World>(new World());
-    const movementSystem = useRef<MovementSystem>(
-        new MovementSystem(world.current)
-    );
-    const shootingSystem = useRef<ShootingSystem>(
-        new ShootingSystem(world.current)
-    );
-    const collisionSystem = useRef<CollisionSystem>(
-        new CollisionSystem(world.current)
-    );
-    const powerupSystem = useRef<PowerupSystem>(new PowerupSystem(world.current));
-    const enemySpawnSystem = useRef<EnemySpawnSystem>(
-        new EnemySpawnSystem(world.current)
-    );
-    const explosionSystem = useRef<ExplosionSystem>(
-        new ExplosionSystem(world.current)
-    );
-    const keyboardSystem = useRef<KeyboardSystem>(new KeyboardSystem(world.current));
-    const renderSystem = useRef<RenderSystem>(new RenderSystem(world.current));
-    const directorSystem = useRef<DirectorSystem>(new DirectorSystem(world.current));
-
+    const game = useRef(gameBoot());
 
     useEffect(() => {
         if (!gameStarted) return;
@@ -60,26 +65,28 @@ export default function TankGame() {
         const canvas = canvasRef.current;
         if (!canvas) return;
 
-        renderSystem.current.init(canvas);
+        const { world, movementSystem, shootingSystem, collisionSystem, powerupSystem, enemySpawnSystem, explosionSystem, keyboardSystem, renderSystem, directorSystem } = game.current;
+
+        renderSystem.init(canvas);
 
         // Game state
         let animationFrameId: number;
         let lastTimestamp = 0;
 
         // Create player tank
-        const playerId = directorSystem.current.startGame();
+        const playerId = directorSystem.startGame();
 
         // Game loop
         function gameLoop(timestamp: number) {
             // Calculate delta time
             const deltaTime = timestamp - lastTimestamp
 
-            if (deltaTime >= renderSystem.current.frameTime) {
-                lastTimestamp = timestamp - (deltaTime % renderSystem.current.frameTime);
+            if (deltaTime >= renderSystem.frameTime) {
+                lastTimestamp = timestamp - (deltaTime % renderSystem.frameTime);
 
-                const keys = keyboardSystem.current.keys;
+                const keys = keyboardSystem.keys;
 
-                const tank = world.current.getComponent(playerId, Tank);
+                const tank = world.getComponent(playerId, Tank);
 
                 // Shoot on space
                 if (keys[KEY_SPACE] && timestamp - tank.lastShot > tank.shootCooldown) {
@@ -88,7 +95,7 @@ export default function TankGame() {
                 }
 
                 // Update player movement
-                const playerMovement = world.current.getComponent(playerId, Movement);
+                const playerMovement = world.getComponent(playerId, Movement);
                 if (playerMovement) {
                     debugger
                     if (keys["w"]) {
@@ -107,16 +114,18 @@ export default function TankGame() {
                 }
 
                 // Update systems
-                movementSystem.current.update(deltaTime / 1000);
-                shootingSystem.current.update(timestamp);
-                collisionSystem.current.update(timestamp);
-                powerupSystem.current.update(timestamp);
-                enemySpawnSystem.current.update(timestamp);
-                explosionSystem.current.update(timestamp);
-                renderSystem.current.update(deltaTime);
+                movementSystem.update(deltaTime / 1000);
+                shootingSystem.update(timestamp);
+                collisionSystem.update(timestamp);
+                powerupSystem.update(timestamp);
+                enemySpawnSystem.update(timestamp);
+                explosionSystem.update(timestamp);
+                renderSystem.update(deltaTime);
+
+                const health = world.getComponent(playerId, Health);
 
                 // Check game over
-                if (!world.current.hasComponent(playerId, Health)) {
+                if (health.isDead()) {
                     setGameOver(true);
                 }
             }
@@ -130,7 +139,7 @@ export default function TankGame() {
         // Cleanup
         return () => {
             cancelAnimationFrame(animationFrameId);
-            keyboardSystem.current.unmount();
+            keyboardSystem.unmount();
         };
     }, [gameStarted, gameOver]);
 
