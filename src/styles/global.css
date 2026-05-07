@@ -540,7 +540,7 @@ html.dark .logo-next { filter: invert(1); }
   grid-template-columns: 110px 1fr auto;
   gap: 28px;
   align-items: baseline;
-  padding: 24px 4px;
+  padding: 24px 12px;
   border-bottom: 1px solid var(--line);
   text-decoration: none;
   color: inherit;
@@ -548,8 +548,8 @@ html.dark .logo-next { filter: invert(1); }
 }
 .blog-row:hover {
   background: var(--bg-panel);
-  padding-left: 12px;
-  padding-right: 12px;
+  /*padding-left: 12px;*/
+  /*padding-right: 12px;*/
 }
 .blog-row:hover .blog-row-title { color: var(--link); }
 .blog-row:hover .blog-row-arrow { transform: translateX(4px); opacity: 1; }
@@ -783,6 +783,7 @@ html.dark .logo-next { filter: invert(1); }
 /* ───────── Posts index page ───────── */
 .posts-index {
   max-width: 920px;
+    width: 100%;
   margin: 48px auto 0;
   padding: 0 24px 64px;
 }
