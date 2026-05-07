@@ -1,19 +1,26 @@
 ---
-import {t} from "../helpers/t";
-const { showAvatar = true } = Astro.props;
+const path = Astro.url.pathname;
+const isActive = (p: string) => path === p || (p !== "/" && path.startsWith(p));
 ---
-<nav class="max-w-3xl mx-auto px-2 py-4 flex items-center gap-4">
-  {showAvatar && (
-    <div class="w-4 h-4 rounded-2xl overflow-hidden bg-gradient-to-br from-amber-100 to-blue-100 dark:from-gray-700 dark:to-gray-600 flex items-center justify-center flex-shrink-0">
-      <img
-          loading="eager"
-          src="/profile.jpeg"
-          alt={t("Nikolay Kost")}
-          class="w-full h-full object-cover"
-        />
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand-wrapper">
+      <div class="logo">
+        <img loading="eager" src="/assets/profile.jpeg" alt="Nikolay Kost" class="logo-img" />
+      </div>
+      <a href="/" class="nav-brand">Nikolay Kost</a>
     </div>
-  )}
-  <a href="/" class="text-sm font-bold dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-    {t("Nikolay Kost")}
-  </a>
+    <ul>
+      <li><a href="/#overview" class:list={[{ active: isActive("/") && path === "/" }]}>Overview</a></li>
+      <li><a href="/#experience">Experience</a></li>
+      <li><a href="/#crafts">Crafts</a></li>
+      <li><a href="/blog" class:list={[{ active: isActive("/blog") }]}>Blog</a></li>
+      <li><a href="/support" class:list={[{ active: isActive("/support") }]}>Support</a></li>
+    </ul>
+    <a class="nav-cta" href="mailto:nk@artkost.dev">nk@artkost.dev ›</a>
+  </div>
 </nav>
+
+<style>
+  .nav ul a.active { color: var(--ink); }
+</style>

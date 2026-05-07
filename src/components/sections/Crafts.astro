@@ -1,0 +1,43 @@
+---
+---
+<section id="crafts" class="section-spaced">
+  <div class="eyebrow">Open source</div>
+  <h2 class="h1" style="margin: 8px 0 36px;">A few things I've made.</h2>
+
+  <div class="crafts">
+    <article class="craft craft-bbob">
+      <span class="craft-tag">📦 Library</span>
+      <h3><a href="https://github.com/jilizart/bbob">BBob</a></h3>
+      <p>
+        A JavaScript library for parsing BBCode. Converts <span class="mono" style="color: var(--ink);">bbcode → AST → React</span>.
+        Renders tablature at <a href="https://ultimate-guitar.com">ultimate‑guitar.com</a> with cord tooltips and two‑column printing that keeps chords and verses aligned.
+      </p>
+      <p>
+        Later adopted by <a href="https://musescore.com">musescore.com</a> for comments &amp; posts after the PHP pipeline OOM'd at ~1&nbsp;GB.
+        Moving rendering to the client took page‑wide BBCode from seconds to <b>15&nbsp;ms</b>.
+      </p>
+      <div class="pills">
+        <span class="pill">javascript</span>
+        <span class="pill">react</span>
+        <span class="pill">parser</span>
+        <span class="pill">ast</span>
+      </div>
+    </article>
+
+    <article class="craft craft-bnet">
+      <span class="craft-tag">🎮 R&amp;D</span>
+      <h3><a href="https://github.com/w3gh/ghost.js">Battle.net · reversed</a></h3>
+      <p>
+        As part of R&amp;D, I reverse‑engineered (via Wireshark) and implemented the Battle.net protocol for Warcraft&nbsp;3 in Node.js.
+        Some native C libraries are wired in via <a href="https://github.com/node-ffi/node-ffi">node‑ffi</a>.
+      </p>
+      <p>A study in binary protocols, packet framing, and keeping a long‑running Node process honest.</p>
+      <div class="pills">
+        <span class="pill">node.js</span>
+        <span class="pill">protocol</span>
+        <span class="pill">wireshark</span>
+        <span class="pill">ffi</span>
+      </div>
+    </article>
+  </div>
+</section>

@@ -1,0 +1,81 @@
+---
+import "../styles/global.css";
+import Navbar from "../components/Navbar.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import { ViewTransitions } from "astro:transitions";
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description = "Nikolay Kost — JavaScript Developer. Building for the web since 2013.",
+  ogImage = "/assets/profile.jpeg",
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- OpenGraph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site).toString()} />
+    <meta property="og:url" content={canonical} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, Astro.site).toString()} />
+
+    <link rel="preconnect" href="https://rsms.me/" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+
+    <!-- Pre-paint theme: read localStorage and apply class before first paint -->
+    <script is:inline>
+      (function () {
+        try {
+          const saved = JSON.parse(localStorage.getItem("__tweaks") || "{}");
+          const theme = saved.theme || "light";
+          const isDark = theme === "dark" ||
+            (theme === "auto" && matchMedia("(prefers-color-scheme: dark)").matches);
+          if (isDark) document.documentElement.classList.add("dark");
+          if (saved.accentHue != null) {
+            const h = saved.accentHue;
+            const root = document.documentElement;
+            if (h === 0) {
+              root.style.setProperty("--accent", isDark ? "oklch(0.85 0 0)" : "oklch(0.25 0 0)");
+              root.style.setProperty("--accent-2", isDark ? "oklch(0.7 0 0)" : "oklch(0.4 0 0)");
+            } else {
+              root.style.setProperty("--accent-h", h);
+              root.style.setProperty("--accent", `oklch(0.62 0.17 ${h})`);
+              root.style.setProperty("--accent-2", `oklch(0.74 0.13 ${h})`);
+            }
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <ViewTransitions />
+  </head>
+  <body>
+    <Navbar />
+    <main class="wrap-wide">
+      <slot />
+    </main>
+    <SiteFooter />
+  </body>
+</html>

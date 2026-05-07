@@ -1,0 +1,66 @@
+---
+import { SOCIALS, SOCIAL_PATHS, GMAIL_FULL_SVG } from "../data/socials";
+---
+<div id="social" style="display: flex; align-items: center; flex-wrap: wrap; gap: 14px; justify-content: flex-end;">
+  {SOCIALS.map((s) => {
+    const useFullGmail = s.slug === "gmail";
+    const path = SOCIAL_PATHS[s.slug];
+    return (
+      <a
+        href={s.href}
+        target="_blank"
+        rel="noopener"
+        title={s.label}
+        aria-label={s.label}
+        class="social-link"
+      >
+        <span
+          class="social-icon"
+          style={`background:${useFullGmail ? "#fff" : s.bg}; ${useFullGmail ? "border:1px solid var(--line);" : "border:none;"}`}
+        >
+          {useFullGmail ? (
+            <span class="gmail-svg" set:html={GMAIL_FULL_SVG} />
+          ) : (
+            <svg viewBox="0 0 24 24" style="width: 11px; height: 11px; fill: #fff;">
+              <path d={path} />
+            </svg>
+          )}
+        </span>
+        <span>{s.label}</span>
+      </a>
+    );
+  })}
+</div>
+
+<style>
+  .social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: var(--ink-2);
+    font-size: 13px;
+    font-weight: 500;
+    transition: color 0.15s;
+  }
+  .social-link:hover { color: var(--ink); }
+  .social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 999px;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+  .gmail-svg {
+    width: 14px;
+    height: 14px;
+    display: inline-flex;
+  }
+  .gmail-svg :global(svg) {
+    width: 14px;
+    height: 14px;
+  }
+</style>
