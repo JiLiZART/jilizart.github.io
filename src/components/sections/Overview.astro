@@ -15,7 +15,7 @@ import SocialRow from "../SocialRow.astro";
     </div>
 
     <div class="tile c-4 r-2" style="padding: 0; border: none;">
-      <img src="/assets/profile.jpeg" alt="Nikolay Kost" class="avatar" />
+      <img src="/profile.jpeg" alt="Nikolay Kost" class="avatar" />
     </div>
 
     <div class="tile c-4 r-1" style="background: #F7DF1E; color: #000; border-color: transparent; flex-direction: row; align-items: center; justify-content: flex-start; gap: 20px;">
@@ -53,10 +53,10 @@ import SocialRow from "../SocialRow.astro";
 
     <div class="tile ink c-4 r-1">
       <div class="caption" style="color: #8e8e93;">Open source</div>
-      <div>
+      <a target="_blank" href="https://github.com/jilizart/bbob">
         <div class="tile-title">⚡️ BBob</div>
         <div class="caption" style="color: #8e8e93;">Blazing‑fast BBCode parser. Transforms to AST, then to HTML, React, or Vue.</div>
-      </div>
+      </a>
     </div>
 
     <div class="tile c-4 r-1" style="background: linear-gradient(135deg, oklch(0.95 0.045 140), oklch(0.96 0.035 90)); align-items: center; justify-content: center; text-align: center;">
@@ -70,10 +70,11 @@ import SocialRow from "../SocialRow.astro";
 
     <div class="tile c-4 r-1" style="background: linear-gradient(135deg, oklch(0.96 0.03 var(--accent-h)), oklch(0.93 0.05 var(--accent-h)));">
       <div class="caption">Codewars</div>
-      <div>
-        <div class="tile-title">3 kyu</div>
+      <a target="_blank" href="https://codewars.com/users/JiLiZART">
+        <img src="/codewars.svg" width="120" alt="Codewars" class="tile-title" />
+          <div class="tile-sub"><strong>3 kyu</strong></div>
         <div class="caption">Algorithmic puzzles &amp; katas.</div>
-      </div>
+      </a>
     </div>
 
     <div class="tile c-4 r-1" style="background: var(--bg-panel); padding: 20px 22px; justify-content: center; gap: 8px;">
@@ -81,7 +82,7 @@ import SocialRow from "../SocialRow.astro";
       <div class="tile-title" style="margin-top: 4px;">Frontend infrastructure</div>
       <div class="key-skills-row" style="margin-top: 6px; gap: 5px;">
         {KEY_SKILLS.map((k) => (
-          <span class="key-skill-pill" style="background: rgba(0,0,0,.04); color: var(--ink-2); border: 1px solid var(--line); padding: 4px 13px; font-size: 13.5px;">{k}</span>
+          <span class="key-skill-pill" style="background: rgba(0,0,0,.04); color: var(--ink-2); border: 1px solid var(--line);">{k}</span>
         ))}
       </div>
     </div>
