@@ -36,8 +36,36 @@ export interface CryptoAddress {
 }
 
 export const CRYPTO_ADDRESSES: CryptoAddress[] = [
-  { name: "Bitcoin",  ticker: "BTC",  network: "Bitcoin · Native SegWit",     address: "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh", cls: "btc",  badge: "₿" },
-  { name: "Ethereum", ticker: "ETH",  network: "Ethereum · ERC‑20 compatible", address: "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb1", cls: "eth",  badge: "Ξ" },
-  { name: "Toncoin",  ticker: "TON",  network: "The Open Network",            address: "UQA1zaJ8sV6kPaSRk7rT3TQTlCnP6_yX9zAk_R3oGqHyw1aV", cls: "ton",  badge: "💎" },
-  { name: "Tether",   ticker: "USDT", network: "Tron · TRC‑20",               address: "TJRabPrwbZy45sbavfcjinPJC18kjpRTv8", cls: "usdt", badge: "₮" },
+    {
+        name: "Bitcoin",
+        ticker: "BTC",
+        network: "Bitcoin · Native SegWit",
+        address: "bc1qr22aa64ymzg05c4zcx8slz04p83swnaj3epns0",
+        cls: "btc",
+        badge: "₿"
+    },
+    {
+        name: "Ethereum",
+        ticker: "ETH",
+        network: "Ethereum · ERC‑20 compatible",
+        address: "0xf586601C98418f49e539741C8D9d69cd6153ce96",
+        cls: "eth",
+        badge: "Ξ"
+    },
+    {
+        name: "Toncoin",
+        ticker: "TON",
+        network: "The Open Network",
+        address: "UQBxdTv-I6Phd472-S019tzh8To7XjN8bbGeHkBYLeRT4uJm",
+        cls: "ton",
+        badge: "💎"
+    },
+    {
+        name: "Tether",
+        ticker: "USDT",
+        network: "Tron · TRC‑20",
+        address: "TCocpaWRcgFH3vtL6J8JFoG2m3Mc6Z1BoF",
+        cls: "usdt",
+        badge: "₮"
+    },
 ];
