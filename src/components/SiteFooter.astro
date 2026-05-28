@@ -1,5 +1,7 @@
 ---
 const year = new Date().getFullYear();
+const sha = import.meta.env.CF_PAGES_COMMIT_SHA;
+
 ---
 <footer class="site-footer">
   <div class="site-footer-inner">
@@ -32,6 +34,7 @@ const year = new Date().getFullYear();
     <div class="legal">
       <div>© {year} Nikolay Kost. All rights reserved.</div>
       <div>Designed with care in HTML &amp; CSS.</div>
+      <div>{sha}</div>
     </div>
   </div>
 </footer>

@@ -11,11 +11,15 @@ const https = {
 };
 
 export default defineConfig({
-  integrations: [react(), tailwind()],
-  vite: {
-      css: { devSourcemap: true },
-    server: {
-      https,
-    },
-  },
+    integrations: [react(), tailwind()],
+    vite: {
+        css: {devSourcemap: true},
+        server: {
+            https,
+        },
+        define: {
+            'import.meta.env.CF_PAGES_URL': JSON.stringify(process.env.CF_PAGES_URL),
+            'import.meta.env.CF_PAGES_COMMIT_SHA': JSON.stringify(process.env.CF_PAGES_COMMIT_SHA)
+        }
+    }
 });
