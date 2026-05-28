@@ -5,6 +5,11 @@ import Experience from "../components/sections/Experience.astro";
 import Crafts from "../components/sections/Crafts.astro";
 // import BlogStrip from "../components/sections/BlogStrip.astro";
 import ContactBlock from "../components/ContactBlock.astro";
+
+const CF_PAGES_URL = import.meta.env.CF_PAGES_URL!
+
+console.log(CF_PAGES_URL)
+
 ---
 <BaseLayout title="Nikolay Kost — JavaScript Developer">
   <Overview />
