@@ -1,0 +1,43 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ContactBlock from "../../components/ContactBlock.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts", ({ data }) => !data.draft);
+  return posts.map((p) => ({ params: { slug: p.slug }, props: { post: p } }));
+}
+
+interface Props { post: CollectionEntry<"posts"> }
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+---
+<BaseLayout title={`${post.data.title} — Nikolay Kost`} description={post.data.excerpt}>
+  <div class="post-wrap">
+    <a href="/blog" class="post-back">← All posts</a>
+    <div class="post-meta">
+      <span class="post-meta-tag">{post.data.tag}</span>
+      <span>{fmt(post.data.date)}</span>
+      <span class="post-meta-dot"></span>
+      <span>{post.data.readTime}</span>
+    </div>
+    <h1 class="post-title">{post.data.title}</h1>
+    <p class="post-lede">{post.data.excerpt}</p>
+    <div class="post-author">
+      <img src="/profile.jpeg" alt="Nikolay Kost" class="post-author-img" />
+      <div>
+        <div class="post-author-name">Nikolay Kost</div>
+        <div class="post-author-bio">JavaScript Developer · Building for the web since 2013</div>
+      </div>
+    </div>
+  </div>
+
+  <article class="post-wrap post-body">
+    <Content />
+  </article>
+
+  <ContactBlock constrained />
+</BaseLayout>

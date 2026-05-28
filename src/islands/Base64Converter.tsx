@@ -1,4 +1,5 @@
 import React, { useMemo, useState, useRef } from "react";
+import {t} from "../helpers/t.ts";
 
 interface BackgroundOption {
   label: string;
@@ -7,9 +8,9 @@ interface BackgroundOption {
 }
 
 const backgroundOptions: BackgroundOption[] = [
-  { label: "Black", value: "black", class: "bg-black" },
-  { label: "White", value: "white", class: "bg-white" },
-  { label: "Transparent", value: "transparent", class: "bg-transparent" },
+  { label: t("Black"), value: "black", class: "bg-black" },
+  { label: t("White"), value: "white", class: "bg-white" },
+  { label: t("Transparent"), value: "transparent", class: "bg-transparent" },
 ];
 
 const Base64Converter: React.FC = () => {
@@ -19,7 +20,7 @@ const Base64Converter: React.FC = () => {
   const [base64Output, setBase64Output] = useState("");
   const [cssOutput, setCssOutput] = useState("");
   const [base64Input, setBase64Input] = useState("");
-  const [copyText, setCopyText] = useState("Copy to Clipboard");
+  const [copyText, setCopyText] = useState(t("Copy to Clipboard"));
   const [background, setBackground] = useState<string>("transparent");
 
   const imageInputRef = useRef<HTMLInputElement>(null);
@@ -62,8 +63,8 @@ const Base64Converter: React.FC = () => {
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(cssOutput);
-    setCopyText("Copied!");
-    setTimeout(() => setCopyText("Copy to Clipboard"), 2000);
+    setCopyText(t("Copied!"));
+    setTimeout(() => setCopyText(t("Copy to Clipboard")), 2000);
   };
 
   const handleBase64Input = (value: string) => {
@@ -140,7 +141,7 @@ const Base64Converter: React.FC = () => {
                 : "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700"
             }`}
           >
-            Image to Base64
+              {t("Image to Base64")}
           </button>
           <button
             onClick={() => handleTabChange("base64")}
@@ -150,7 +151,7 @@ const Base64Converter: React.FC = () => {
                 : "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700"
             }`}
           >
-            Base64 to Image
+              {t("Base64 to Image")}
           </button>
         </div>
       </div>
@@ -186,9 +187,9 @@ const Base64Converter: React.FC = () => {
               onClick={() => imageInputRef.current?.click()}
             >
               <span className="block mb-2">
-                Drop image here or click to upload
+                {t("Drop image here or click to upload")}
               </span>
-              <span className="text-sm">Supports PNG, JPG, WEBP</span>
+              <span className="text-sm">{t("Supports PNG, JPG, WEBP")}</span>
             </label>
           </div>
 
@@ -203,7 +204,7 @@ const Base64Converter: React.FC = () => {
               </PreviewBox>
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Base64 Output
+                    {t("Base64 Output")}
                 </label>
                 <textarea
                   value={base64Output}
@@ -215,7 +216,7 @@ const Base64Converter: React.FC = () => {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  CSS Background
+                    {t("CSS Background")}
                 </label>
                 <textarea
                   value={cssOutput}
@@ -238,7 +239,7 @@ const Base64Converter: React.FC = () => {
         <div className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Paste Base64 Code
+                {t("Paste Base64 Code")}
             </label>
             <textarea
               value={base64Input}
@@ -261,7 +262,7 @@ const Base64Converter: React.FC = () => {
                 onClick={handleDownload}
                 className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
               >
-                Download Image
+                  {t("Download Image")}
               </button>
             </div>
           )}

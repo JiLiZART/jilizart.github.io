@@ -13,6 +13,7 @@ const https = {
 export default defineConfig({
   integrations: [react(), tailwind()],
   vite: {
+      css: { devSourcemap: true },
     server: {
       https,
     },

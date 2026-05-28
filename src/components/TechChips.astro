@@ -1,0 +1,21 @@
+---
+import { TECH, type TechCategory } from "../data/tech";
+interface Props {
+  group: TechCategory;
+  compact?: boolean;
+}
+const { group, compact = true } = Astro.props;
+const items = TECH.filter((t) => t.group === group);
+---
+<div class:list={["chips", compact && "chips-compact"]}>
+  {items.map((t) => {
+    const iconFilter = t.fg === "#fff" ? "brightness(0) invert(1)" : "brightness(0)";
+    const style = `--chip-bg:${t.bg};--chip-fg:${t.fg};--chip-icon-filter:${iconFilter};border-color:transparent;`;
+    return (
+      <span class="chip" style={style}>
+        <img src={`https://cdn.simpleicons.org/${t.slug}`} alt="" loading="lazy" />
+        {t.name}
+      </span>
+    );
+  })}
+</div>

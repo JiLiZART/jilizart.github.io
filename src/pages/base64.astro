@@ -1,14 +1,12 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Navbar from "../components/Navbar.astro";
-import Base64Converter from "../components/Base64Converter";
+import Base64Converter from "../islands/Base64Converter";
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<Layout title="Base64 Image Converter">
-  <Navbar />
+<BaseLayout title="Base64 Image Converter">
   <main class="min-w-full mx-auto px-6 py-12">
     <div class="w-full max-w-3xl mx-auto px-6">
         <Base64Converter client:load />
     </div>
   </main>
-</Layout>
+</BaseLayout>

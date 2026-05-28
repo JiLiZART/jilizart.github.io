@@ -1,48 +1,32 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import Navbar from "../../components/Navbar.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PostsSearch from "../../islands/PostsSearch.tsx";
+import { getCollection } from "astro:content";
 
-const posts = await Astro.glob("./*.md");
-const sortedPosts = posts.sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime());
+const all = await getCollection("posts", ({ data }) => !data.draft);
+const posts = all
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .map((p) => ({
+    slug: p.slug,
+    title: p.data.title,
+    excerpt: p.data.excerpt,
+    date: p.data.date.toISOString(),
+    tag: p.data.tag,
+    readTime: p.data.readTime,
+  }));
 ---
+<BaseLayout title="Writing — Nikolay Kost" description="Long-form essays on frontend infrastructure, open source, and shipping software that holds up.">
+  <section id="posts-index" class="section-spaced posts-index">
+    <a href="/" class="post-back">← Back to home</a>
+    <div class="eyebrow" style="margin-top: 24px;">Writing</div>
+    <h1 class="h1" style="margin: 8px 0 12px; font-size: clamp(38px, 5vw, 64px);">
+      Notes from the build.
+    </h1>
+    <p class="body-l" style="max-width: 620px; margin: 0 0 36px; color: var(--ink-2);">
+      Long-form essays on frontend infrastructure, open source, and the process of shipping
+      software that holds up. Updated when I have something worth saying.
+    </p>
 
-<Layout title="Blog - Nikolay Kost">
-  <Navbar />
-  <main class="max-w-3xl mx-auto px-6 py-12">
-    <h1 class="text-4xl font-bold mb-12 dark:text-white">Blog</h1>
-    <div class="space-y-12">
-      {sortedPosts.map((post) => (
-        <article class="group">
-          <a href={post.url} class="block">
-            <h2 class="text-2xl font-bold mb-2 group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400 transition-colors">
-              {post.frontmatter.title}
-            </h2>
-            <div class="flex items-center gap-4 text-gray-600 dark:text-gray-400 mb-4">
-              <time datetime={post.frontmatter.date}>
-                {new Date(post.frontmatter.date).toLocaleDateString('en-US', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric'
-                })}
-              </time>
-              {post.frontmatter.tags && (
-                <div class="flex gap-2">
-                  {post.frontmatter.tags.map((tag: string) => (
-                    <span class="text-sm bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              )}
-            </div>
-            {post.frontmatter.description && (
-              <p class="text-gray-600 dark:text-gray-400">
-                {post.frontmatter.description}
-              </p>
-            )}
-          </a>
-        </article>
-      ))}
-    </div>
-  </main>
-</Layout>
+    <PostsSearch posts={posts} client:load />
+  </section>
+</BaseLayout>

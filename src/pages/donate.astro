@@ -2,8 +2,8 @@
 import { t } from "i18next";
 import { FiCopy } from "react-icons/fi";
 import { SiBitcoin, SiEthereum, SiTether } from "react-icons/si";
-import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 
 const cryptoAddresses = [
     {
@@ -37,7 +37,7 @@ const copyToClipboard = `
 `;
 ---
 
-<Layout title={t("Donate - Nikolay Kost")}>
+<BaseLayout title={t("Donate - Nikolay Kost")}>
   <Navbar />
   <main class="max-w-3xl mx-auto px-6 py-20">
     <h1 class="text-4xl font-bold mb-8 dark:text-white">{t("Support My Work 🙏")}</h1>
@@ -70,6 +70,6 @@ const copyToClipboard = `
       ))}
     </div>
   </main>
-</Layout>
+</BaseLayout>
 
 <script set:html={copyToClipboard}></script>
