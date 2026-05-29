@@ -66,8 +66,8 @@ Language is resolved **once** at config load and injected as compile-time data v
    - `import { lang, dict, enDict } from "virtual:i18n"`.
    - `export const LANG = lang`.
    - `t(key: string, vars?: Record<string, string | number>): string` — dotted-path lookup in `dict` → fallback `enDict` → fallback raw `key`; then `{{var}}` interpolation; `\n` preserved.
-   - `tRich(key: string, hrefs: string[]): string` — replaces numbered placeholders `<0>text</0>`, `<1>…</1>` with `<a href={hrefs[n]} …>text</a>`; returned as an HTML string for use with `set:html`. (Crafts strings use this convention; avoids a heavy `<Trans>` component.)
    - Missing key → `console.warn` during build.
+   - Rich strings (those containing inline markup such as `<a>`, `<b>`, `<br/>`): the **full HTML is stored in the JSON value** and rendered with Astro's `set:html={t(key)}`. All such hrefs are static, so no placeholder/`<Trans>` machinery is needed. Plain text strings use `{t(key)}` (Astro auto-escapes). Non-breaking spaces are stored as the literal ` ` character.
 
 4. **`src/i18n/locales/en.json` + `ru.json`** — canonical locale data, namespaced by section/page. Supersede and remove `public/locales/*`.
 
@@ -133,6 +133,6 @@ Replace literals with keys across: `Overview`, `Experience`, `Crafts`, `ContactB
 
 - `resolve.mjs` — pure lang resolution; testable without Astro.
 - virtual-module plugin — provides `virtual:i18n`; depends on `resolve.mjs` + locale files.
-- `t.ts` — `t` / `tRich` / `LANG`; pure given the injected dict.
+- `t.ts` — `t` / `LANG`; thin wrapper over the pure `translator.mjs` factory, given the injected dict. (The dead `Trans` export is removed.)
 - locale JSONs — data only.
 - components — consume `t()`; no i18n logic of their own.
