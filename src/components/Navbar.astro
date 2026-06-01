@@ -1,4 +1,5 @@
 ---
+import { t } from "@/helpers/t";
 const path = Astro.url.pathname;
 const isActive = (p: string) => path === p || (p !== "/" && path.startsWith(p));
 ---
@@ -11,13 +12,13 @@ const isActive = (p: string) => path === p || (p !== "/" && path.startsWith(p));
       <a href="/" class="nav-brand">Nikolay Kost</a>
     </div>
     <ul>
-      <li><a href="/#overview" class:list={[{ active: isActive("/") && path === "/" }]}>Overview</a></li>
-      <li><a href="/#experience">Experience</a></li>
-      <li><a href="/#crafts">Crafts</a></li>
+      <li><a href="/#overview" class:list={[{ active: isActive("/") && path === "/" }]}>{t("nav.overview")}</a></li>
+      <li><a href="/#experience">{t("nav.experience")}</a></li>
+      <li><a href="/#crafts">{t("nav.crafts")}</a></li>
       <!--<li><a href="/blog" class:list={[{ active: isActive("/blog") }]}>Blog</a></li>-->
-      <li><a href="/support" class:list={[{ active: isActive("/support") }]}>Support</a></li>
+      <li><a href="/support" class:list={[{ active: isActive("/support") }]}>{t("nav.support")}</a></li>
     </ul>
-    <a class="nav-cta" href="mailto:nk@artkost.dev">@email me ›</a>
+    <a class="nav-cta" href="mailto:nk@artkost.dev">{t("nav.cta")}</a>
   </div>
 </nav>
 
