@@ -1,0 +1,109 @@
+{
+  "nav": {
+    "overview": "Overview",
+    "experience": "Experience",
+    "crafts": "Crafts",
+    "support": "Support",
+    "cta": "@email me ›"
+  },
+  "overview": {
+    "eyebrow": "Hey, I'm Nikolay 👋",
+    "role": "JavaScript Developer",
+    "intro": "I specialize in building exceptional web applications and creating efficient JavaScript solutions. Currently focusing on exciting new projects and open‑source contributions. ✨",
+    "stackLabel": "Stack",
+    "stackPrimary": "Primary language<br />since 2013",
+    "frameworksLabel": "Frameworks",
+    "openSourceLabel": "Open source",
+    "bbobDesc": "Blazing‑fast BBCode parser. Transforms to AST, then to HTML, React, or Vue.",
+    "yearsUnit": "years",
+    "yearsCaption": "building for the web",
+    "codewarsDesc": "Algorithmic puzzles & katas.",
+    "specialityLabel": "Speciality",
+    "specialityValue": "Frontend infrastructure",
+    "langLabel": "Languages & Frameworks",
+    "buildLabel": "Styling, Testing & Build",
+    "infraLabel": "Infrastructure & DevOps",
+    "reachLabel": "Reach out"
+  },
+  "experience": {
+    "eyebrow": "Experience",
+    "title": "Places I've helped build.",
+    "hodl": "Reimagined frontend infrastructure on top of Next.js — faster builds, cleaner data layer, a design system that scales with the team.",
+    "cube": "Helped built the UI Kit that backs Cube's SaaS, created JSON to SQL tokenizer and visualizer.",
+    "muse": "Improved Musescore & Ultimate Guitar — tablature rendering & BBCode pipelines from seconds to 15 ms.",
+    "skyeng": "Helped to built learner‑facing product surfaces for CIS largest online English school..",
+    "medialooks": "Designed single‑page applications for streaming and media‑production tooling."
+  },
+  "crafts": {
+    "eyebrow": "Open source",
+    "title": "A few things I've made.",
+    "bbobTag": "📦 Library",
+    "bbobTitle": "<a href=\"https://github.com/jilizart/bbob\">BBob</a>",
+    "bbobP1": "A JavaScript library for parsing BBCode. Converts <span class=\"mono\" style=\"color: var(--ink);\">bbcode → AST → React</span>. Renders tablature at <a href=\"https://ultimate-guitar.com\">ultimate‑guitar.com</a> with cord tooltips and two‑column printing that keeps chords and verses aligned.",
+    "bbobP2": "Later adopted by <a href=\"https://musescore.com\">musescore.com</a> for comments &amp; posts after the PHP pipeline OOM'd at ~1&nbsp;GB. Moving rendering to the client took page‑wide BBCode from seconds to <b>15&nbsp;ms</b>.",
+    "bnetTag": "🎮 R&D",
+    "bnetTitle": "<a href=\"https://github.com/w3gh/ghost.js\">Battle.net · reversed</a>",
+    "bnetP1": "As part of R&amp;D, I reverse‑engineered (via Wireshark) and implemented the Battle.net protocol for Warcraft&nbsp;3 in Node.js. Some native C libraries are wired in via <a href=\"https://github.com/node-ffi/node-ffi\">node‑ffi</a>.",
+    "bnetP2": "A study in binary protocols, packet framing, and keeping a long‑running Node process honest."
+  },
+  "contact": {
+    "eyebrow": "Get in touch",
+    "title": "Let's make something worth using.",
+    "body": "I'm taking on new frontend and infrastructure work. The fastest way to reach me is email or Telegram — I usually reply within a day.",
+    "cv": "Download CV"
+  },
+  "footer": {
+    "tagline": "JavaScript developer, based remote. Building for the web since 2013.",
+    "directLabel": "Direct",
+    "codeLabel": "Code",
+    "elsewhereLabel": "Elsewhere",
+    "email": "Email",
+    "support": "Support my work",
+    "rights": "© {{year}} Nikolay Kost. All rights reserved.",
+    "crafted": "Designed with care in HTML & CSS."
+  },
+  "support": {
+    "metaTitle": "Support my work — Nikolay Kost",
+    "metaDescription": "If something I've made was useful, you can chip in. Crypto addresses for BTC, ETH, TON, USDT.",
+    "back": "← Back to home",
+    "eyebrow": "Support my work",
+    "title": "If something I've made was useful, you can chip in.",
+    "lede": "Most of what I build is open source. If BBob saved your team an afternoon, or a post helped you debug at 2 AM, a small tip keeps the lights on for the next thing.",
+    "noteStrong": "One ask:",
+    "note": " double‑check the network before sending. USDT on TRC‑20 is not the same as USDT on ERC‑20 — sending to the wrong chain loses the funds. If you're unsure, ping me on <a href=\"https://t.me/jilizart\">Telegram</a> first.",
+    "thanks": "Thank you. Genuinely. — Nikolay"
+  },
+  "blog": {
+    "metaTitle": "Writing — Nikolay Kost",
+    "metaDescription": "Long-form essays on frontend infrastructure, open source, and shipping software that holds up.",
+    "back": "← Back to home",
+    "eyebrow": "Writing",
+    "title": "Notes from the build.",
+    "lede": "Long-form essays on frontend infrastructure, open source, and the process of shipping software that holds up. Updated when I have something worth saying."
+  },
+  "post": {
+    "back": "← All posts",
+    "authorBio": "JavaScript Developer · Building for the web since 2013"
+  },
+  "donate": {
+    "metaTitle": "Donate - Nikolay Kost",
+    "title": "Support My Work 🙏",
+    "intro": "If you find my work valuable and would like to support my open-source contributions, you can donate using cryptocurrency. Your support helps me dedicate more time to creating useful content and tools.",
+    "copy": "Copy"
+  },
+  "tools": {
+    "colorTitle": "Color Converter",
+    "base64Title": "Base64 Image Converter",
+    "base64Transparent": "Transparent",
+    "tanksTitle": "Nikolay Kost — JavaScript Developer"
+  },
+  "meta": {
+    "defaultDescription": "Nikolay Kost — JavaScript Developer. Building for the web since 2013.",
+    "homeTitle": "Nikolay Kost — JavaScript Developer",
+    "ogTitle": "Nikolay Kost - JavaScript Developer",
+    "ogDescription": "Nikolay Kost - JavaScript Developer specializing in web applications and efficient JavaScript solutions",
+    "twitterTitle": "Nikolay Kost - JavaScript Developer",
+    "twitterDescription": "I specialize in building exceptional web applications and creating efficient JavaScript solutions. Currently focusing on exciting new projects and open-source contributions. ✨",
+    "twitterImageAlt": "Nikolay Kost - JavaScript Developer"
+  }
+}
