@@ -9,7 +9,9 @@
         "build": "astro build",
         "preview": "astro preview",
         "astro": "astro",
-        "test": "node --test"
+        "test": "node --test",
+        "i18n:check": "node scripts/i18n-check.mjs",
+        "prebuild": "node scripts/i18n-check.mjs"
     },
     "dependencies": {
         "@astrojs/tailwind": "^6.0.2",
