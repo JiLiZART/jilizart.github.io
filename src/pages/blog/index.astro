@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PostsSearch from "../../islands/PostsSearch.tsx";
 import { getCollection } from "astro:content";
+import { t } from "@/helpers/t";
 
 const all = await getCollection("posts", ({ data }) => !data.draft);
 const posts = all
@@ -15,17 +16,12 @@ const posts = all
     readTime: p.data.readTime,
   }));
 ---
-<BaseLayout title="Writing — Nikolay Kost" description="Long-form essays on frontend infrastructure, open source, and shipping software that holds up.">
+<BaseLayout title={t("blog.metaTitle")} description={t("blog.metaDescription")}>
   <section id="posts-index" class="section-spaced posts-index">
-    <a href="/" class="post-back">← Back to home</a>
-    <div class="eyebrow" style="margin-top: 24px;">Writing</div>
-    <h1 class="h1" style="margin: 8px 0 12px; font-size: clamp(38px, 5vw, 64px);">
-      Notes from the build.
-    </h1>
-    <p class="body-l" style="max-width: 620px; margin: 0 0 36px; color: var(--ink-2);">
-      Long-form essays on frontend infrastructure, open source, and the process of shipping
-      software that holds up. Updated when I have something worth saying.
-    </p>
+    <a href="/" class="post-back">{t("blog.back")}</a>
+    <div class="eyebrow" style="margin-top: 24px;">{t("blog.eyebrow")}</div>
+    <h1 class="h1" style="margin: 8px 0 12px; font-size: clamp(38px, 5vw, 64px);">{t("blog.title")}</h1>
+    <p class="body-l" style="max-width: 620px; margin: 0 0 36px; color: var(--ink-2);">{t("blog.lede")}</p>
 
     <PostsSearch posts={posts} client:load />
   </section>
