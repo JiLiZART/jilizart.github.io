@@ -1,8 +1,7 @@
+import { createTranslator } from "../i18n/translator.mjs";
+import { lang, dict, enDict } from "virtual:i18n";
 
-export function t(key: string, options?: Record<string, string>) {
-    return key;
-}
+export const LANG = lang;
 
-export function Trans(props: Record<string, string>) {
-    return props.children;
-}
+const translator = createTranslator({ dict, enDict });
+export const t = translator.t;
