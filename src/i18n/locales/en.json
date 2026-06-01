@@ -95,6 +95,18 @@
     "colorTitle": "Color Converter",
     "base64Title": "Base64 Image Converter",
     "base64Transparent": "Transparent",
+    "base64Black": "Black",
+    "base64White": "White",
+    "base64Copy": "Copy to Clipboard",
+    "base64Copied": "Copied!",
+    "base64ImgToB64": "Image to Base64",
+    "base64B64ToImg": "Base64 to Image",
+    "base64Drop": "Drop image here or click to upload",
+    "base64Supports": "Supports PNG, JPG, WEBP",
+    "base64Output": "Base64 Output",
+    "base64CssBg": "CSS Background",
+    "base64Paste": "Paste Base64 Code",
+    "base64Download": "Download Image",
     "tanksTitle": "Nikolay Kost — JavaScript Developer"
   },
   "meta": {

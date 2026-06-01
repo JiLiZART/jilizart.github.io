@@ -1,5 +1,5 @@
 import React, { useMemo, useState, useRef } from "react";
-import {t} from "../helpers/t.ts";
+import { t } from "../helpers/t";
 
 interface BackgroundOption {
   label: string;
@@ -8,9 +8,9 @@ interface BackgroundOption {
 }
 
 const backgroundOptions: BackgroundOption[] = [
-  { label: t("Black"), value: "black", class: "bg-black" },
-  { label: t("White"), value: "white", class: "bg-white" },
-  { label: t("Transparent"), value: "transparent", class: "bg-transparent" },
+  { label: t("tools.base64Black"), value: "black", class: "bg-black" },
+  { label: t("tools.base64White"), value: "white", class: "bg-white" },
+  { label: t("tools.base64Transparent"), value: "transparent", class: "bg-transparent" },
 ];
 
 const Base64Converter: React.FC = () => {
@@ -20,7 +20,7 @@ const Base64Converter: React.FC = () => {
   const [base64Output, setBase64Output] = useState("");
   const [cssOutput, setCssOutput] = useState("");
   const [base64Input, setBase64Input] = useState("");
-  const [copyText, setCopyText] = useState(t("Copy to Clipboard"));
+  const [copyText, setCopyText] = useState(t("tools.base64Copy"));
   const [background, setBackground] = useState<string>("transparent");
 
   const imageInputRef = useRef<HTMLInputElement>(null);
@@ -63,8 +63,8 @@ const Base64Converter: React.FC = () => {
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(cssOutput);
-    setCopyText(t("Copied!"));
-    setTimeout(() => setCopyText(t("Copy to Clipboard")), 2000);
+    setCopyText(t("tools.base64Copied"));
+    setTimeout(() => setCopyText(t("tools.base64Copy")), 2000);
   };
 
   const handleBase64Input = (value: string) => {
@@ -141,7 +141,7 @@ const Base64Converter: React.FC = () => {
                 : "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700"
             }`}
           >
-              {t("Image to Base64")}
+              {t("tools.base64ImgToB64")}
           </button>
           <button
             onClick={() => handleTabChange("base64")}
@@ -151,7 +151,7 @@ const Base64Converter: React.FC = () => {
                 : "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700"
             }`}
           >
-              {t("Base64 to Image")}
+              {t("tools.base64B64ToImg")}
           </button>
         </div>
       </div>
@@ -187,9 +187,9 @@ const Base64Converter: React.FC = () => {
               onClick={() => imageInputRef.current?.click()}
             >
               <span className="block mb-2">
-                {t("Drop image here or click to upload")}
+                {t("tools.base64Drop")}
               </span>
-              <span className="text-sm">{t("Supports PNG, JPG, WEBP")}</span>
+              <span className="text-sm">{t("tools.base64Supports")}</span>
             </label>
           </div>
 
@@ -204,7 +204,7 @@ const Base64Converter: React.FC = () => {
               </PreviewBox>
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    {t("Base64 Output")}
+                    {t("tools.base64Output")}
                 </label>
                 <textarea
                   value={base64Output}
@@ -216,7 +216,7 @@ const Base64Converter: React.FC = () => {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    {t("CSS Background")}
+                    {t("tools.base64CssBg")}
                 </label>
                 <textarea
                   value={cssOutput}
@@ -239,7 +239,7 @@ const Base64Converter: React.FC = () => {
         <div className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                {t("Paste Base64 Code")}
+                {t("tools.base64Paste")}
             </label>
             <textarea
               value={base64Input}
@@ -262,7 +262,7 @@ const Base64Converter: React.FC = () => {
                 onClick={handleDownload}
                 className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
               >
-                  {t("Download Image")}
+                  {t("tools.base64Download")}
               </button>
             </div>
           )}

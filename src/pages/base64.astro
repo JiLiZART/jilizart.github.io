@@ -1,9 +1,10 @@
 ---
 import Base64Converter from "../islands/Base64Converter";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { t } from "@/helpers/t";
 ---
 
-<BaseLayout title="Base64 Image Converter">
+<BaseLayout title={t("tools.base64Title")}>
   <main class="min-w-full mx-auto px-6 py-12">
     <div class="w-full max-w-3xl mx-auto px-6">
         <Base64Converter client:load />
