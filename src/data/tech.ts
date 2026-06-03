@@ -15,7 +15,7 @@ export const TECH: TechItem[] = [
   { name: "Next",       slug: "nextdotjs",  bg: "#000000", fg: "#fff", group: "lang" },
   { name: "Redux",      slug: "redux",      bg: "#764ABC", fg: "#fff", group: "lang" },
   { name: "Vue",        slug: "vuedotjs",   bg: "#4FC08D", fg: "#fff", group: "lang" },
-  { name: "Nuxt",       slug: "nuxtdotjs",  bg: "#00DC82", fg: "#000", group: "lang" },
+  { name: "Nuxt",       slug: "nuxt",  bg: "#00DC82", fg: "#000", group: "lang" },
   { name: "Svelte",     slug: "svelte",     bg: "#FF3E00", fg: "#fff", group: "lang" },
   { name: "Node",       slug: "nodedotjs",  bg: "#5FA04E", fg: "#fff", group: "lang" },
   { name: "Bun",        slug: "bun",        bg: "#FBF0DF", fg: "#000", group: "lang" },

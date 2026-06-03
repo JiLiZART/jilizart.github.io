@@ -12,3 +12,8 @@ export function resolveLang(env = {}) {
   if (RU_HINT.test(String(env.CF_PAGES_URL || ""))) return "ru";
   return "en";
 }
+
+/** Browser-side: pick lang from window.location.hostname. */
+export function resolveRuntimeLang(hostname) {
+  return String(hostname || "").toLowerCase().endsWith(".ru") ? "ru" : "en";
+}

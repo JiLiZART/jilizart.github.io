@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { resolveLang } from "./resolve.mjs";
+import { resolveLang, resolveRuntimeLang } from "./resolve.mjs";
 
 test("explicit SITE_LANG=ru wins", () => {
   assert.equal(resolveLang({ SITE_LANG: "ru" }), "ru");
@@ -27,4 +27,21 @@ test("empty env -> en", () => {
 });
 test("explicit SITE_LANG beats CF_PAGES_URL", () => {
   assert.equal(resolveLang({ SITE_LANG: "en", CF_PAGES_URL: "https://artkost.ru" }), "en");
+});
+
+test("resolveRuntimeLang: hostname ending in .ru -> ru", () => {
+  assert.equal(resolveRuntimeLang("artkost.ru"), "ru");
+  assert.equal(resolveRuntimeLang("www.artkost.ru"), "ru");
+});
+test("resolveRuntimeLang: other hostnames -> en", () => {
+  assert.equal(resolveRuntimeLang("artkost.dev"), "en");
+  assert.equal(resolveRuntimeLang("localhost"), "en");
+  assert.equal(resolveRuntimeLang(""), "en");
+});
+test("resolveRuntimeLang: case-insensitive", () => {
+  assert.equal(resolveRuntimeLang("ARTKOST.RU"), "ru");
+});
+test("resolveRuntimeLang: '.ru' must be a real suffix, not substring", () => {
+  assert.equal(resolveRuntimeLang("ruby.dev"), "en");
+  assert.equal(resolveRuntimeLang("artkost.run"), "en");
 });
