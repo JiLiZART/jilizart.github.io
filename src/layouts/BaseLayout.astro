@@ -3,7 +3,6 @@ import "../styles/global.css";
 import Navbar from "../components/Navbar.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import { ViewTransitions } from "astro:transitions";
-import Posthog from "../components/Posthog.astro";
 import { t, LANG } from "@/helpers/t";
 
 interface Props {
@@ -100,27 +99,6 @@ const personLd = LANG === "ru"
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Pre-paint lang flip: hostname-based, runs before first paint. -->
-    <script is:inline>
-      (function () {
-        try {
-          var isRu = location.hostname.toLowerCase().endsWith(".ru");
-          document.documentElement.lang = isRu ? "ru" : "en";
-          var setAttr = function (sel, attr, val) {
-            var el = document.querySelector(sel);
-            if (el) el.setAttribute(attr, val);
-          };
-          var origin = isRu ? "https://artkost.ru" : "https://artkost.dev";
-          var domain = isRu ? "artkost.ru" : "artkost.dev";
-          setAttr('link[rel="canonical"]', "href", origin);
-          setAttr('meta[property="og:locale"]', "content", isRu ? "ru_RU" : "en_US");
-          setAttr('meta[property="og:url"]', "content", origin + "/");
-          setAttr('meta[property="twitter:domain"]', "content", domain);
-          setAttr('meta[property="twitter:url"]', "content", origin + "/");
-        } catch (e) {}
-      })();
-    </script>
-
     <!-- Pre-paint theme: read localStorage and apply class before first paint -->
     <script is:inline>
       (function () {
@@ -155,6 +133,5 @@ const personLd = LANG === "ru"
     </main>
     <SiteFooter />
   </body>
-  <Posthog />
   <script type="application/ld+json" set:html={JSON.stringify(personLd)} />
 </html>
