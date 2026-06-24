@@ -1,9 +1,10 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ColorConverter from "../islands/ColorConverter";
+import { t } from "@/helpers/t";
 ---
 
-<BaseLayout title="Color Converter">
+<BaseLayout title={t("tools.colorTitle")}>
   <main id="color-canvas" class="min-w-full min-h-screen self-stretch flex-grow flex items-center transition-colors duration-200">
     <div class="w-full max-w-3xl mx-auto px-6">
       <ColorConverter client:load />

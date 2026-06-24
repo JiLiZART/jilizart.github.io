@@ -4,38 +4,72 @@ import Navbar from "../components/Navbar.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import { ViewTransitions } from "astro:transitions";
 import Posthog from "../components/Posthog.astro";
+import { t, LANG } from "@/helpers/t";
 
 interface Props {
-  title: string;
+  title?: string;
   description?: string;
   ogImage?: string;
 }
 
 const {
-  title,
-  description = "Nikolay Kost — JavaScript Developer. Building for the web since 2013.",
+  title = t("meta.homeTitle"),
+  description = t("meta.defaultDescription"),
 } = Astro.props;
 
+const canonical = LANG === "ru" ? "https://artkost.ru" : "https://artkost.dev";
+const ogLocale = LANG === "ru" ? "ru_RU" : "en_US";
+const twitterDomain = LANG === "ru" ? "artkost.ru" : "artkost.dev";
+
+const personLd = LANG === "ru"
+  ? {
+      "@context": "https://json-ld.org/contexts/person.jsonld",
+      name: "Николай Костюрин",
+      nickname: "jilizart",
+      born: "1989-12-29",
+      email: "mailto:nk@artkost.ru",
+      url: "https://artkost.ru",
+      jobTitle: "JavaScript Разработчик",
+      image: "https://artkost.ru/profile.jpeg",
+      homepage: "https://artkost.ru",
+      sameAs: [
+        "https://github.com/jilizart",
+        "https://x.com/jilizart",
+        "https://linkedin.com/in/nkostyurin",
+        "https://t.me/jilizart",
+        "https://twitter.com/jilizart",
+      ],
+    }
+  : {
+      "@context": "https://json-ld.org/contexts/person.jsonld",
+      name: "Nikolay Kosturin",
+      nickname: "jilizart",
+      born: "1989-12-29",
+      email: "mailto:nk@artkost.dev",
+      url: "https://artkost.dev",
+      jobTitle: "JavaScript Developer",
+      image: "https://artkost.dev/profile.jpeg",
+      homepage: "https://artkost.dev",
+      sameAs: [
+        "https://github.com/jilizart",
+        "https://x.com/jilizart",
+        "https://linkedin.com/in/nkostyurin",
+        "https://t.me/jilizart",
+        "https://twitter.com/jilizart",
+      ],
+    };
 ---
 
 <!doctype html>
-<html lang="en" class="font-sans font-['Inter']">
+<html lang={LANG} class="font-sans font-['Inter']">
   <head>
-    <link
-      rel="alternate"
-      hreflang="ru"
-      href="https://artkost.ru"
-    />
-    <link
-      rel="alternate"
-      hreflang="en"
-      href="https://artkost.dev"
-    />
+    <link rel="alternate" hreflang="ru" href="https://artkost.ru" />
+    <link rel="alternate" hreflang="en" href="https://artkost.dev" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href="https://artkost.dev" />
+    <link rel="canonical" href={canonical} />
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -43,31 +77,22 @@ const {
     <link rel="manifest" href="/site.webmanifest">
 
     <!-- Opengraph Meta Tags -->
-    <meta property="og:url" content="https://artkost.dev/">
-    <meta property="og:url" lang="ru" content="https://artkost.dev/">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Nikolay Kost - JavaScript Developer">
-    <meta property="og:title" lang="ru" content="Николай Костюрин — JavaScript Разработчик">
-    <meta property="og:description" content="Nikolay Kost - JavaScript Developer specializing in web applications and efficient JavaScript solutions">
-    <meta property="og:description" lang="ru" content="Николай Костюрин — разработчик JavaScript, специализирующийся на веб-приложениях и эффективных решениях JavaScript">
-
-    <meta property="og:image" content="android-chrome-192x192.png">
+    <meta property="og:url" content={canonical + "/"} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:title" content={t("meta.ogTitle")} />
+    <meta property="og:description" content={t("meta.ogDescription")} />
+    <meta property="og:image" content="android-chrome-192x192.png" />
 
     <!-- Twitter Meta Tags -->
-    <meta property="twitter:domain" content="artkost.dev">
-    <meta property="twitter:domain" lang="ru" content="artkost.ru">
-    <meta property="twitter:url" content="https://artkost.dev/">
-    <meta property="twitter:url" lang="ru" content="https://artkost.ru/">
-    <meta name="twitter:site" content="@jilizart">
-
-    <meta name="twitter:description" content="I specialize in building exceptional web applications and creating efficient JavaScript solutions. Currently focusing on exciting new projects and open-source contributions. ✨">
-    <meta name="twitter:description" lang="ru" content="Я специализируюсь на создании исключительных веб-приложений и создании эффективных решений JavaScript. В настоящее время сосредоточен на новых интересных проектах и ​​вкладах в open-source. ✨">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Nikolay Kost - JavaScript Developer">
-    <meta name="twitter:title" lang="ru" content="Nikolay Костюрин - JavaScript Разработчик">
-    <meta name="twitter:image" content="android-chrome-192x192.png">
-    <meta name="twitter:image:alt" content="Nikolay Kost - JavaScript Developer">
-    <meta name="twitter:image:alt" lang="ru" content="Nikolay Костюрин - JavaScript Разработчик">
+    <meta property="twitter:domain" content={twitterDomain} />
+    <meta property="twitter:url" content={canonical + "/"} />
+    <meta name="twitter:site" content="@jilizart" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={t("meta.twitterTitle")} />
+    <meta name="twitter:description" content={t("meta.twitterDescription")} />
+    <meta name="twitter:image" content="android-chrome-192x192.png" />
+    <meta name="twitter:image:alt" content={t("meta.twitterImageAlt")} />
 
     <meta name="ahrefs-site-verification" content="02bbece82fd93f7352123d0b2fdca15b55b6cdf90e672bb28d5456458fafcf37">
 
@@ -110,44 +135,5 @@ const {
     <SiteFooter />
   </body>
   <Posthog />
-  <script type="application/ld+json" lang="en">
-      {
-          "@context": "https://json-ld.org/contexts/person.jsonld",
-          "name": "Nikolay Kosturin",
-          "nickname": "jilizart",
-          "born": "1989-12-29",
-          "email": "mailto:nk@artkost.dev",
-          "url": "https://artkost.dev",
-          "jobTitle": "JavaScript Developer",
-          "image": "https://artkost.dev/profile.jpeg",
-          "homepage": "https://artkost.dev",
-          "sameAs": [
-          "https://github.com/jilizart",
-          "https://x.com/jilizart",
-          "https://linkedin.com/in/nkostyurin",
-          "https://t.me/jilizart",
-          "https://twitter.com/jilizart"
-      ]
-      }
-  </script>
-  <script type="application/ld+json" lang="ru">
-      {
-          "@context": "https://json-ld.org/contexts/person.jsonld",
-          "name": "Николай Костюрин",
-          "nickname": "jilizart",
-          "born": "1989-12-29",
-          "email": "mailto:nk@artkost.ru",
-          "url": "https://artkost.ru",
-          "jobTitle": "JavaScript Разработчик",
-          "image": "https://artkost.ru/profile.jpeg",
-          "homepage": "https://artkost.ru",
-          "sameAs": [
-          "https://github.com/jilizart",
-          "https://x.com/jilizart",
-          "https://linkedin.com/in/nkostyurin",
-          "https://t.me/jilizart",
-          "https://twitter.com/jilizart"
-      ]
-      }
-  </script>
+  <script type="application/ld+json" set:html={JSON.stringify(personLd)} />
 </html>

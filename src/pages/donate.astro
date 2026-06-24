@@ -1,5 +1,5 @@
 ---
-import { t } from "i18next";
+import { t } from "@/helpers/t";
 import { FiCopy } from "react-icons/fi";
 import { SiBitcoin, SiEthereum, SiTether } from "react-icons/si";
 import Navbar from "../components/Navbar.astro";
@@ -37,13 +37,13 @@ const copyToClipboard = `
 `;
 ---
 
-<BaseLayout title={t("Donate - Nikolay Kost")}>
+<BaseLayout title={t("donate.metaTitle")}>
   <Navbar />
   <main class="max-w-3xl mx-auto px-6 py-20">
-    <h1 class="text-4xl font-bold mb-8 dark:text-white">{t("Support My Work 🙏")}</h1>
+    <h1 class="text-4xl font-bold mb-8 dark:text-white">{t("donate.title")}</h1>
 
     <p class="text-lg text-gray-600 dark:text-gray-400 mb-12">
-      {t("If you find my work valuable and would like to support my open-source contributions, you can donate using cryptocurrency. Your support helps me dedicate more time to creating useful content and tools.")}
+      {t("donate.intro")}
     </p>
 
     <div class="space-y-6">
@@ -63,7 +63,7 @@ const copyToClipboard = `
               class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
             >
               <FiCopy className="w-4 h-4" />
-              {t("Copy")}
+              {t("donate.copy")}
             </button>
           </div>
         </div>

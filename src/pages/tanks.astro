@@ -1,9 +1,10 @@
 ---
 import TankGame from "../games/TankGame";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { t } from "@/helpers/t";
 ---
 
-<BaseLayout title="Nikolay Kost — JavaScript Developer">
+<BaseLayout title={t("tools.tanksTitle")}>
     <main class="min-w-full mx-auto px-6 py-12">
         <div class="w-full max-w-3xl mx-auto px-6">
             <TankGame client:load />

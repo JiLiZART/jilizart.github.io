@@ -1,39 +1,37 @@
 ---
+import { t } from "@/helpers/t";
 const year = new Date().getFullYear();
 const sha = import.meta.env.CF_PAGES_COMMIT_SHA;
-
 ---
 <footer class="site-footer">
   <div class="site-footer-inner">
     <div class="footer-grid">
       <div class="footer-col">
         <div class="nav-brand" style="font-size: 15px;">Nikolay Kost</div>
-        <p class="caption" style="margin: 8px 0 0; max-width: 260px;">
-          JavaScript developer, based remote. Building for the web since 2013.
-        </p>
+        <p class="caption" style="margin: 8px 0 0; max-width: 260px;">{t("footer.tagline")}</p>
       </div>
       <div class="footer-col">
-        <h4>Direct</h4>
-        <a href="mailto:nk@artkost.dev">Email</a>
+        <h4>{t("footer.directLabel")}</h4>
+        <a href="mailto:nk@artkost.dev">{t("footer.email")}</a>
         <a href="https://t.me/jilizart">Telegram</a>
         <a href="https://bit.ly/nkcv">CV</a>
       </div>
       <div class="footer-col">
-        <h4>Code</h4>
+        <h4>{t("footer.codeLabel")}</h4>
         <a href="https://github.com/jilizart">GitHub</a>
         <a href="https://github.com/jilizart/bbob">BBob</a>
         <a href="https://www.codewars.com/users/JiLiZART">Codewars · 3 kyu</a>
       </div>
       <div class="footer-col">
-        <h4>Elsewhere</h4>
+        <h4>{t("footer.elsewhereLabel")}</h4>
         <a href="https://x.com/jilizart">X / Twitter</a>
         <a href="https://linkedin.com/in/nkosturin">LinkedIn</a>
-        <a href="/support">Support my work</a>
+        <a href="/support">{t("footer.support")}</a>
       </div>
     </div>
     <div class="legal">
-      <div>© {year} Nikolay Kost. All rights reserved.</div>
-      <div>Designed with care in HTML &amp; CSS.</div>
+      <div>{t("footer.rights", { year })}</div>
+      <div>{t("footer.crafted")}</div>
       <div>{sha}</div>
     </div>
   </div>

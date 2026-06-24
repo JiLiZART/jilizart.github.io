@@ -2,16 +2,14 @@
 import { KEY_SKILLS } from "../../data/tech";
 import TechChips from "../TechChips.astro";
 import SocialRow from "../SocialRow.astro";
+import { t } from "@/helpers/t";
 ---
 <section id="overview">
   <div class="bento" id="bento">
     <div class="tile tile-dev c-8 r-2">
-      <div class="eyebrow">Hey, I'm Nikolay 👋</div>
-      <h2 class="h1" style="margin: 10px 0 18px; text-wrap: balance;">JavaScript Developer</h2>
-      <p class="body-l" style="margin: 0; max-width: 560px;">
-        I specialize in building exceptional web applications and creating efficient JavaScript solutions.
-        Currently focusing on exciting new projects and open‑source contributions. ✨
-      </p>
+      <div class="eyebrow">{t("overview.eyebrow")}</div>
+      <h2 class="h1" style="margin: 10px 0 18px; text-wrap: balance;">{t("overview.role")}</h2>
+      <p class="body-l" style="margin: 0; max-width: 560px;">{t("overview.intro")}</p>
     </div>
 
     <div class="tile c-4 r-2" style="padding: 0; border: none;">
@@ -21,15 +19,13 @@ import SocialRow from "../SocialRow.astro";
     <div class="tile c-4 r-1" style="background: #F7DF1E; color: #000; border-color: transparent; flex-direction: row; align-items: center; justify-content: flex-start; gap: 20px;">
       <div class="tile-super" style="color: #000; font-size: 72px; line-height: 1;">JS</div>
       <div style="display: flex; flex-direction: column; gap: 4px;">
-        <div class="caption" style="color: rgba(0,0,0,.55);">Stack</div>
-        <div style="color: #000; font-weight: 600; font-size: 15px; line-height: 1.25;">
-          Primary language<br />since 2013
-        </div>
+        <div class="caption" style="color: rgba(0,0,0,.55);">{t("overview.stackLabel")}</div>
+        <div style="color: #000; font-weight: 600; font-size: 15px; line-height: 1.25;" set:html={t("overview.stackPrimary")}></div>
       </div>
     </div>
 
     <div class="tile c-4 r-1" style="background: linear-gradient(135deg, oklch(0.96 0.04 250), oklch(0.94 0.05 210));">
-      <div class="caption">Frameworks</div>
+      <div class="caption">{t("overview.frameworksLabel")}</div>
       <div>
         <div class="tile-title" style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
           <img src="https://cdn.simpleicons.org/react/61DAFB" alt="" style="width: 20px; height: 20px;" />
@@ -52,19 +48,19 @@ import SocialRow from "../SocialRow.astro";
     </div>
 
     <div class="tile ink c-4 r-1">
-      <div class="caption" style="color: #8e8e93;">Open source</div>
+      <div class="caption" style="color: #8e8e93;">{t("overview.openSourceLabel")}</div>
       <a target="_blank" href="https://github.com/jilizart/bbob">
         <div class="tile-title">⚡️ BBob</div>
-        <div class="caption" style="color: #8e8e93;">Blazing‑fast BBCode parser. Transforms to AST, then to HTML, React, or Vue.</div>
+        <div class="caption" style="color: #8e8e93;">{t("overview.bbobDesc")}</div>
       </a>
     </div>
 
     <div class="tile c-4 r-1" style="background: linear-gradient(135deg, oklch(0.95 0.045 140), oklch(0.96 0.035 90)); align-items: center; justify-content: center; text-align: center;">
       <div>
         <div class="tile-super" style="font-size: 64px;">
-          11<span style="color: var(--ink-3); font-weight: 500; font-size: 30px; margin-left: 4px;">years</span>
+          11<span style="color: var(--ink-3); font-weight: 500; font-size: 30px; margin-left: 4px;">{t("overview.yearsUnit")}</span>
         </div>
-        <div class="caption" style="margin-top: 4px;">building for the web</div>
+        <div class="caption" style="margin-top: 4px;">{t("overview.yearsCaption")}</div>
       </div>
     </div>
 
@@ -73,13 +69,13 @@ import SocialRow from "../SocialRow.astro";
       <a target="_blank" href="https://codewars.com/users/JiLiZART">
         <img src="/codewars.svg" width="120" alt="Codewars" class="tile-title" />
           <div class="tile-sub"><strong>3 kyu</strong></div>
-        <div class="caption">Algorithmic puzzles &amp; katas.</div>
+        <div class="caption">{t("overview.codewarsDesc")}</div>
       </a>
     </div>
 
     <div class="tile c-4 r-1" style="background: var(--bg-panel); padding: 20px 22px; justify-content: center; gap: 8px;">
-      <div class="caption">Speciality</div>
-      <div class="tile-title" style="margin-top: 4px;">Frontend infrastructure</div>
+      <div class="caption">{t("overview.specialityLabel")}</div>
+      <div class="tile-title" style="margin-top: 4px;">{t("overview.specialityValue")}</div>
       <div class="key-skills-row" style="margin-top: 6px; gap: 5px;">
         {KEY_SKILLS.map((k) => (
           <span class="key-skill-pill" style="background: rgba(0,0,0,.04); color: var(--ink-2); border: 1px solid var(--line);">{k}</span>
@@ -88,23 +84,23 @@ import SocialRow from "../SocialRow.astro";
     </div>
 
     <div class="tile c-5 r-1" style="background: var(--bg-panel); justify-content: flex-start; gap: 10px; overflow: hidden;">
-      <div class="caption">Languages &amp; Frameworks</div>
+      <div class="caption">{t("overview.langLabel")}</div>
       <TechChips group="lang" />
     </div>
 
     <div class="tile c-4 r-1" style="background: var(--bg-panel); justify-content: flex-start; gap: 10px; overflow: hidden;">
-      <div class="caption">Styling, Testing &amp; Build</div>
+      <div class="caption">{t("overview.buildLabel")}</div>
       <TechChips group="build" />
     </div>
 
     <div class="tile c-3 r-1" style="background: var(--bg-panel); justify-content: flex-start; gap: 10px; overflow: hidden;">
-      <div class="caption">Infrastructure &amp; DevOps</div>
+      <div class="caption">{t("overview.infraLabel")}</div>
       <TechChips group="infra" />
     </div>
 
     <div class="tile c-12 r-1" style="background: var(--bg-panel); flex-direction: row; align-items: center; justify-content: space-between; gap: 24px;">
       <div>
-        <div class="caption">Reach out</div>
+        <div class="caption">{t("overview.reachLabel")}</div>
         <div class="tile-title" style="margin-top: 6px;">@jilizart</div>
       </div>
       <SocialRow />

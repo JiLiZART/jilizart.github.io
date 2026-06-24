@@ -2,16 +2,14 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import CopyButton from "../islands/CopyButton.tsx";
 import { CRYPTO_ADDRESSES } from "../data/socials";
+import { t } from "@/helpers/t";
 ---
-<BaseLayout title="Support my work — Nikolay Kost" description="If something I've made was useful, you can chip in. Crypto addresses for BTC, ETH, TON, USDT.">
+<BaseLayout title={t("support.metaTitle")} description={t("support.metaDescription")}>
   <div class="support-wrap">
-    <a href="/" class="support-back">← Back to home</a>
-    <span class="support-eyebrow">Support my work</span>
-    <h1 class="support-title">If something I've made was useful, you can chip in.</h1>
-    <p class="support-lede">
-      Most of what I build is open source. If BBob saved your team an afternoon, or a post helped
-      you debug at 2&nbsp;AM, a small tip keeps the lights on for the next thing.
-    </p>
+    <a href="/" class="support-back">{t("support.back")}</a>
+    <span class="support-eyebrow">{t("support.eyebrow")}</span>
+    <h1 class="support-title">{t("support.title")}</h1>
+    <p class="support-lede">{t("support.lede")}</p>
 
     <div class="support-list">
       {CRYPTO_ADDRESSES.map((a) => (
@@ -30,11 +28,9 @@ import { CRYPTO_ADDRESSES } from "../data/socials";
     </div>
 
     <div class="support-note">
-      <strong>One ask:</strong> double‑check the network before sending. USDT on TRC‑20 is not the
-      same as USDT on ERC‑20 — sending to the wrong chain loses the funds. If you're unsure, ping me
-      on <a href="https://t.me/jilizart">Telegram</a> first.
+      <strong>{t("support.noteStrong")}</strong><Fragment set:html={t("support.note")} />
     </div>
 
-    <div class="support-thanks">Thank you. Genuinely. — Nikolay</div>
+    <div class="support-thanks">{t("support.thanks")}</div>
   </div>
 </BaseLayout>
