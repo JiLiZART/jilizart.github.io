@@ -1,6 +1,6 @@
-import type {Wall} from "./types.ts";
+import type {Position} from "./components.ts";
 
-export function renderBrick(ctx: CanvasRenderingContext2D, wall: Wall) {
+export function renderBrick(ctx: CanvasRenderingContext2D, wall: Position) {
     ctx.fillStyle = "#B25D00"
     ctx.fillRect(wall.x, wall.y, wall.width, wall.height)
 
@@ -20,7 +20,7 @@ export function renderBrick(ctx: CanvasRenderingContext2D, wall: Wall) {
     }
 }
 
-export function renderSteel(ctx: CanvasRenderingContext2D, wall: Wall) {
+export function renderSteel(ctx: CanvasRenderingContext2D, wall: Position) {
     ctx.fillStyle = "#808080"
     ctx.fillRect(wall.x, wall.y, wall.width, wall.height)
 
@@ -29,7 +29,7 @@ export function renderSteel(ctx: CanvasRenderingContext2D, wall: Wall) {
     ctx.fillRect(wall.x + wall.width / 4, wall.y + wall.height / 4, wall.width / 2, wall.height / 2)
 }
 
-export function renderWater(ctx: CanvasRenderingContext2D, wall: Wall) {
+export function renderWater(ctx: CanvasRenderingContext2D, wall: Position) {
     ctx.fillStyle = "#0077BE"
     ctx.fillRect(wall.x, wall.y, wall.width, wall.height)
 
@@ -40,7 +40,7 @@ export function renderWater(ctx: CanvasRenderingContext2D, wall: Wall) {
     }
 }
 
-export function renderBush(ctx: CanvasRenderingContext2D, wall: Wall) {
+export function renderBush(ctx: CanvasRenderingContext2D, wall: Position) {
     ctx.fillStyle = "#228B22"
     ctx.fillRect(wall.x, wall.y, wall.width, wall.height)
 

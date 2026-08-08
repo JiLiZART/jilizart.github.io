@@ -1,12 +1,12 @@
 // Add the following interface after the Wall interface
-export interface Powerup extends GameObject {
+export interface Powerup extends Position {
     type: "helmet" | "star" | "tank"
     duration: number
     spawnTime: number
 }
 
 // Add the following interfaces after the Powerup interface
-export interface Explosion extends GameObject {
+export interface Explosion extends Position {
     frame: number
     maxFrames: number
     frameTime: number
@@ -15,13 +15,13 @@ export interface Explosion extends GameObject {
 }
 
 // Game objects
-export interface Bullet extends GameObject {
+export interface Bullet extends Position {
     direction: string
     speed: number
     isEnemy: boolean
 }
 
-export interface Enemy extends GameObject {
+export interface Enemy extends Position {
     speed: number
     direction: string
     color: string
@@ -31,11 +31,11 @@ export interface Enemy extends GameObject {
     shootCooldown: number
 }
 
-export interface Wall extends GameObject {
+export interface Wall extends Position {
     type: "brick" | "steel" | "water" | "bush"
 }
 
-export interface GameObject {
+export interface Position {
     x: number
     y: number
     width: number
